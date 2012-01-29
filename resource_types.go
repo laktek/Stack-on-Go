@@ -30,7 +30,6 @@ User Shallow_user
 Link string
 }
 
-
 type Comment struct {
 	Comment_id    int
 	Post_id       int

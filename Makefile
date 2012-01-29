@@ -9,6 +9,7 @@ GOFILES=\
 	collections.go\
 	info.go\
 	posts.go\
+	privileges.go\
 	questions.go\
 	resource_types.go\
 
