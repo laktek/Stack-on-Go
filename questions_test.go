@@ -106,6 +106,123 @@ func TestLinkedQuestions(t *testing.T) {
 
 }
 
+func TestQuestionsFromUsers(t *testing.T) {
+	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3/questions", dummyQuestionsResponse, t)
+	defer dummy_server.Close()
+
+	session := NewSession("stackoverflow")
+	_, err := session.QuestionsFromUsers([]int{1, 2, 3}, map[string]string{})
+
+	if err != nil {
+		t.Error(err.String())
+	}
+
+}
+
+func TestQuestionsWithNoAnswersFromUsers(t *testing.T) {
+	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3/questions/no-answers", dummyQuestionsResponse, t)
+	defer dummy_server.Close()
+
+	session := NewSession("stackoverflow")
+	_, err := session.QuestionsWithNoAnswersFromUsers([]int{1, 2, 3}, map[string]string{})
+
+	if err != nil {
+		t.Error(err.String())
+	}
+
+}
+
+func TestUnacceptedQuestionsFromUsers(t *testing.T) {
+	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3/questions/unaccepted", dummyQuestionsResponse, t)
+	defer dummy_server.Close()
+
+	session := NewSession("stackoverflow")
+	_, err := session.UnacceptedQuestionsFromUsers([]int{1, 2, 3}, map[string]string{})
+
+	if err != nil {
+		t.Error(err.String())
+	}
+
+}
+
+func TestUnansweredQuestionsFromUsers(t *testing.T) {
+	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3/questions/unanswered", dummyQuestionsResponse, t)
+	defer dummy_server.Close()
+
+	session := NewSession("stackoverflow")
+	_, err := session.UnansweredQuestionsFromUsers([]int{1, 2, 3}, map[string]string{})
+
+	if err != nil {
+		t.Error(err.String())
+	}
+
+}
+
+func TestFavoriteQuestionsFromUsers(t *testing.T) {
+	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3/favorites", dummyQuestionsResponse, t)
+	defer dummy_server.Close()
+
+	session := NewSession("stackoverflow")
+	_, err := session.FavoriteQuestionsFromUsers([]int{1, 2, 3}, map[string]string{})
+
+	if err != nil {
+		t.Error(err.String())
+	}
+
+}
+
+func TestTopQuestionsFromUsers(t *testing.T) {
+	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3/tags/hello;world/top-questions", dummyQuestionsResponse, t)
+	defer dummy_server.Close()
+
+	session := NewSession("stackoverflow")
+	_, err := session.TopQuestionsFromUsers([]int{1, 2, 3}, []string{"hello", "world"}, map[string]string{})
+
+	if err != nil {
+		t.Error(err.String())
+	}
+
+}
+
+func TestFAQForTags(t *testing.T) {
+	dummy_server := returnDummyResponseForPath("/2.0/tags/hello;world/faq", dummyQuestionsResponse, t)
+	defer dummy_server.Close()
+
+	session := NewSession("stackoverflow")
+	_, err := session.FAQForTags([]string{"hello", "world"}, map[string]string{})
+
+	if err != nil {
+		t.Error(err.String())
+	}
+
+}
+
+func TestSearch(t *testing.T) {
+	dummy_server := returnDummyResponseForPathAndParams("/2.0/search", map[string]string{"intitle": "hello world", "tagged": "basic"}, dummyQuestionsResponse, t)
+	defer dummy_server.Close()
+
+	session := NewSession("stackoverflow")
+	_, err := session.Search("hello world", map[string]string{"tagged": "basic"})
+
+	if err != nil {
+		t.Error(err.String())
+	}
+
+}
+
+func TestSimilar(t *testing.T) {
+	dummy_server := returnDummyResponseForPathAndParams("/2.0/similar", map[string]string{"title": "hello world", "tagged": "basic"}, dummyQuestionsResponse, t)
+	defer dummy_server.Close()
+
+	session := NewSession("stackoverflow")
+	_, err := session.Similar("hello world", map[string]string{"tagged": "basic"})
+
+	if err != nil {
+		t.Error(err.String())
+	}
+
+}
+
 //Test Data
 
 var dummyQuestionsResponse string = `{
