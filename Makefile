@@ -1,8 +1,12 @@
 include $(GOROOT)/src/Make.inc
 
-TARG=gostack
+TARG=stackongo
 GOFILES=\
-	gostack.go\
+	session.go\
+	resource_types.go\
+	collections.go\
+	questions.go\
+	comments.go\
 
 include $(GOROOT)/src/Make.pkg
 
