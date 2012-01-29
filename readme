@@ -1,0 +1,1 @@
+All timestamps takes the type int64. Use time.SecondsToUTC(elem.Creation_date) to parse it.
