@@ -7,6 +7,8 @@ GOFILES=\
 	collections.go\
 	questions.go\
 	comments.go\
+	answers.go\
+	posts.go\
 
 include $(GOROOT)/src/Make.pkg
 
