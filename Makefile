@@ -7,6 +7,7 @@ GOFILES=\
 	badges.go\
 	comments.go\
 	collections.go\
+	info.go\
 	posts.go\
 	questions.go\
 	resource_types.go\
