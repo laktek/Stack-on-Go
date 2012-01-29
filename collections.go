@@ -1,7 +1,12 @@
 package stackongo
 
-type questionsCollection struct {
-	Items []Question
+type answersCollection struct {
+	Items []Answer
+	Error
+}
+
+type badgesCollection struct {
+	Items []Badge
 	Error
 }
 
@@ -10,8 +15,8 @@ type commentsCollection struct {
 	Error
 }
 
-type answersCollection struct {
-	Items []Answer
+type infoCollection struct {
+	Items []Info
 	Error
 }
 
@@ -20,12 +25,14 @@ type postsCollection struct {
 	Error
 }
 
-type infoCollection struct {
-	Items []Info
-	Error
-}
-
 type privilegesCollection struct {
 	Items []Privilege
 	Error
 }
+
+type questionsCollection struct {
+	Items []Question
+	Error
+}
+
+

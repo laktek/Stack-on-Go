@@ -1,33 +1,5 @@
 package stackongo
 
-type Info struct {
-	Total_questions      int
-	Total_unanswered     int
-	Total_accepted       int
-	Total_answers        int
-	Questions_per_minute float32
-	Answers_per_minute   float32
-	Total_comments       int
-	Total_votes          int
-	Total_badges         int
-	Badges_per_minute    float32
-	Total_users          int
-	New_active_users     int
-	Api_revision         string
-}
-
-type Privilege struct {
-	Short_description string
-	Description       string
-	Reputation        int
-}
-
-type Error struct {
-	Error_id      int
-	Error_name    string
-	Error_message string
-}
-
 type Answer struct {
 	Question_id          int
 	Answer_id            int
@@ -47,6 +19,18 @@ type Answer struct {
 	Link                 string
 }
 
+type Badge struct {
+Badge_id int
+Rank string 
+Name string
+Description string
+Award_count int
+Badge_type string 
+User Shallow_user
+Link string
+}
+
+
 type Comment struct {
 	Comment_id    int
 	Post_id       int
@@ -60,33 +44,26 @@ type Comment struct {
 	Link          string
 }
 
-type Shallow_user struct {
-	User_id       int
-	Display_name  string
-	Reputation    int
-	User_type     string //one of unregistered, registered, moderator, or does_not_exist
-	Profile_image string
-	Link          string
+type Error struct {
+	Error_id      int
+	Error_name    string
+	Error_message string
 }
 
-type Site struct {
-	Site_type          string
-	Name               string
-	Logo_url           string
-	Api_site_parameter string
-	Site_url           string
-	Audience           string
-	Icon_url           string
-	Aliases            []string
-	Site_state         string //one of normal, closed_beta, open_beta, or linked_meta
-	//styling styling
-	Closed_beta_date int64
-	Open_beta_date   int64
-	Launch_date      int64
-	Favicon_url      string
-	//related_sites an array of related_site
-	Twitter_account     string
-	Markdown_extensions []string
+type Info struct {
+	Total_questions      int
+	Total_unanswered     int
+	Total_accepted       int
+	Total_answers        int
+	Questions_per_minute float32
+	Answers_per_minute   float32
+	Total_comments       int
+	Total_votes          int
+	Total_badges         int
+	Badges_per_minute    float32
+	Total_users          int
+	New_active_users     int
+	Api_revision         string
 }
 
 type Migration_info struct {
@@ -96,7 +73,7 @@ type Migration_info struct {
 }
 
 type Post struct {
-	Post_id            int 
+	Post_id            int
 	Post_type          string
 	Body               string
 	Owner              Shallow_user
@@ -107,6 +84,12 @@ type Post struct {
 	Up_vote_count      int
 	Down_vote_count    int
 	Comments           []Comment
+}
+
+type Privilege struct {
+	Short_description string
+	Description       string
+	Reputation        int
 }
 
 type Question struct {
@@ -138,4 +121,33 @@ type Question struct {
 	Answers              []Answer
 	Link                 string
 	Is_answered          bool
+}
+
+type Shallow_user struct {
+	User_id       int
+	Display_name  string
+	Reputation    int
+	User_type     string //one of unregistered, registered, moderator, or does_not_exist
+	Profile_image string
+	Link          string
+}
+
+type Site struct {
+	Site_type          string
+	Name               string
+	Logo_url           string
+	Api_site_parameter string
+	Site_url           string
+	Audience           string
+	Icon_url           string
+	Aliases            []string
+	Site_state         string //one of normal, closed_beta, open_beta, or linked_meta
+	//styling styling
+	Closed_beta_date int64
+	Open_beta_date   int64
+	Launch_date      int64
+	Favicon_url      string
+	//related_sites an array of related_site
+	Twitter_account     string
+	Markdown_extensions []string
 }
