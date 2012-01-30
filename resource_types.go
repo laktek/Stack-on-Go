@@ -122,6 +122,25 @@ type Question struct {
 	Is_answered          bool
 }
 
+type Revision struct {
+Revision_guid string
+Revision_number int
+Revision_type string //one of single_user, or vote_based
+Post_type string //one of question, or answer
+Post_id int
+Comment string
+Creation_date int64
+Is_rollback bool
+Last_body string
+Last_title string
+Last_tags []string
+Body string
+Title string
+Tags []string
+Set_community_wiki bool
+User Shallow_user
+}
+
 type Shallow_user struct {
 	User_id       int
 	Display_name  string

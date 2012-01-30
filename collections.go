@@ -35,4 +35,7 @@ type questionsCollection struct {
 	Error
 }
 
-
+type revisionsCollection struct {
+	Items []Revision
+	Error
+}

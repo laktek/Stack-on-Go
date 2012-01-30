@@ -12,6 +12,7 @@ GOFILES=\
 	privileges.go\
 	questions.go\
 	resource_types.go\
+	revisions.go
 
 include $(GOROOT)/src/Make.pkg
 
