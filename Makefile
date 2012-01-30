@@ -11,8 +11,9 @@ GOFILES=\
 	posts.go\
 	privileges.go\
 	questions.go\
+	reputations.go\
 	resource_types.go\
-	revisions.go
+	revisions.go\
 
 include $(GOROOT)/src/Make.pkg
 

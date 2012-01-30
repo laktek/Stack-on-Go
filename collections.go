@@ -35,6 +35,11 @@ type questionsCollection struct {
 	Error
 }
 
+type reputationsCollection struct {
+	Items []Reputation
+	Error
+}
+
 type revisionsCollection struct {
 	Items []Revision
 	Error

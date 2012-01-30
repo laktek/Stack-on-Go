@@ -20,14 +20,14 @@ type Answer struct {
 }
 
 type Badge struct {
-Badge_id int
-Rank string 
-Name string
-Description string
-Award_count int
-Badge_type string 
-User Shallow_user
-Link string
+	Badge_id    int
+	Rank        string
+	Name        string
+	Description string
+	Award_count int
+	Badge_type  string
+	User        Shallow_user
+	Link        string
 }
 
 type Comment struct {
@@ -122,23 +122,35 @@ type Question struct {
 	Is_answered          bool
 }
 
-type Revision struct {
-Revision_guid string
-Revision_number int
-Revision_type string //one of single_user, or vote_based
-Post_type string //one of question, or answer
+type Reputation struct {
+User_id int
 Post_id int
-Comment string
-Creation_date int64
-Is_rollback bool
-Last_body string
-Last_title string
-Last_tags []string
-Body string
+Post_type string //one of question, or answer
+Vote_type string //one of accepts, up_votes, down_votes, bounties_offered, bounties_won, spam, or suggested_edits
 Title string
-Tags []string
-Set_community_wiki bool
-User Shallow_user
+Link string
+Reputation_change int
+On_date int64
+
+}
+
+type Revision struct {
+	Revision_guid      string
+	Revision_number    int
+	Revision_type      string //one of single_user, or vote_based
+	Post_type          string //one of question, or answer
+	Post_id            int
+	Comment            string
+	Creation_date      int64
+	Is_rollback        bool
+	Last_body          string
+	Last_title         string
+	Last_tags          []string
+	Body               string
+	Title              string
+	Tags               []string
+	Set_community_wiki bool
+	User               Shallow_user
 }
 
 type Shallow_user struct {
