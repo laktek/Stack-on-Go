@@ -123,15 +123,14 @@ type Question struct {
 }
 
 type Reputation struct {
-User_id int
-Post_id int
-Post_type string //one of question, or answer
-Vote_type string //one of accepts, up_votes, down_votes, bounties_offered, bounties_won, spam, or suggested_edits
-Title string
-Link string
-Reputation_change int
-On_date int64
-
+	User_id           int
+	Post_id           int
+	Post_type         string //one of question, or answer
+	Vote_type         string //one of accepts, up_votes, down_votes, bounties_offered, bounties_won, spam, or suggested_edits
+	Title             string
+	Link              string
+	Reputation_change int
+	On_date           int64
 }
 
 type Revision struct {
@@ -180,4 +179,18 @@ type Site struct {
 	//related_sites an array of related_site
 	Twitter_account     string
 	Markdown_extensions []string
+}
+
+type SuggestedEdit struct {
+Suggested_edit_id int
+Post_id int
+Post_type string //one of question, or answer
+Body string
+Title string
+Tags []string
+Comment string
+Creation_date int64
+Approval_date int64 
+Rejection_date int64
+Proposing_user Shallow_user
 }

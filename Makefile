@@ -14,6 +14,7 @@ GOFILES=\
 	reputations.go\
 	resource_types.go\
 	revisions.go\
+	suggested_edits.go\
 
 include $(GOROOT)/src/Make.pkg
 

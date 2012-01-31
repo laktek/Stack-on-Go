@@ -44,3 +44,8 @@ type revisionsCollection struct {
 	Items []Revision
 	Error
 }
+
+type suggestedEditsCollection struct {
+  Items []SuggestedEdit 
+  Error
+}
