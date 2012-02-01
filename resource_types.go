@@ -128,6 +128,19 @@ type Question struct {
 	Is_answered          bool
 }
 
+type QuestionTimeline struct {
+Timeline_type string //one of question, answer, comment, unaccepted_answer, accepted_answer, vote_aggregate, revision, or post_state_changed
+Question_id int
+Post_id int
+Comment_id int
+Revision_guid string
+Up_vote_count int
+Down_vote_count int
+Creation_date int64 
+User Shallow_user
+Owner Shallow_user
+}
+
 type Reputation struct {
 	User_id           int
 	Post_id           int

@@ -11,6 +11,7 @@ GOFILES=\
 	posts.go\
 	privileges.go\
 	questions.go\
+	question_timelines.go\
 	reputations.go\
 	resource_types.go\
 	revisions.go\

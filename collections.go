@@ -35,6 +35,11 @@ type questionsCollection struct {
 	Error
 }
 
+type questionTimelinesCollection struct {
+	Items []QuestionTimeline
+	Error
+}
+
 type reputationsCollection struct {
 	Items []Reputation
 	Error
