@@ -18,6 +18,7 @@ GOFILES=\
 	suggested_edits.go\
 	tags.go\
 	tag_synonyms.go\
+	tag_wikis.go\
 	users.go\
 	user_timelines.go\
 

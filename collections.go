@@ -67,6 +67,11 @@ type tagSynonymsCollection struct {
 	Error
 }
 
+type tagWikisCollection struct {
+	Items []TagWiki
+	Error
+}
+
 type usersCollection struct {
 	Items []User
 	Error

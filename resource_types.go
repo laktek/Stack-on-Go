@@ -225,11 +225,21 @@ type Tag struct {
 }
 
 type TagSynonym struct {
-From_tag string
-To_tag string
-Applied_count int
-Last_applied_date int64 
-Creation_date int64 
+	From_tag          string
+	To_tag            string
+	Applied_count     int
+	Last_applied_date int64
+	Creation_date     int64
+}
+
+type TagWiki struct {
+Tag_name string
+Body string
+Excerpt string
+Body_last_edit_date int64
+Excerpt_last_edit_date int64 
+Last_body_editor Shallow_user
+Last_excerpt_editor Shallow_user
 }
 
 type User struct {
