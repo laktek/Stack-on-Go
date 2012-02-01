@@ -1,5 +1,7 @@
 package stackongo
 
+//All collection types are private
+
 type answersCollection struct {
 	Items []Answer
 	Error
@@ -57,6 +59,11 @@ type suggestedEditsCollection struct {
 
 type tagsCollection struct {
 	Items []Tag
+	Error
+}
+
+type tagSynonymsCollection struct {
+	Items []TagSynonym
 	Error
 }
 

@@ -215,13 +215,21 @@ type SuggestedEdit struct {
 }
 
 type Tag struct {
-Name string
-Count int
-Is_required bool
-Is_moderator_only bool
-User_id int
-Has_synonyms bool
-Last_activity_date int64 
+	Name               string
+	Count              int
+	Is_required        bool
+	Is_moderator_only  bool
+	User_id            int
+	Has_synonyms       bool
+	Last_activity_date int64
+}
+
+type TagSynonym struct {
+From_tag string
+To_tag string
+Applied_count int
+Last_applied_date int64 
+Creation_date int64 
 }
 
 type User struct {
