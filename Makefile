@@ -15,6 +15,7 @@ GOFILES=\
 	resource_types.go\
 	revisions.go\
 	suggested_edits.go\
+	users.go\
 
 include $(GOROOT)/src/Make.pkg
 

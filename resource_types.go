@@ -30,6 +30,12 @@ type Badge struct {
 	Link        string
 }
 
+type Badge_count struct {
+Gold int
+Silver int
+Bronze int
+}
+
 type Comment struct {
 	Comment_id    int
 	Post_id       int
@@ -182,15 +188,46 @@ type Site struct {
 }
 
 type SuggestedEdit struct {
-Suggested_edit_id int
-Post_id int
-Post_type string //one of question, or answer
-Body string
-Title string
-Tags []string
-Comment string
-Creation_date int64
-Approval_date int64 
-Rejection_date int64
-Proposing_user Shallow_user
+	Suggested_edit_id int
+	Post_id           int
+	Post_type         string //one of question, or answer
+	Body              string
+	Title             string
+	Tags              []string
+	Comment           string
+	Creation_date     int64
+	Approval_date     int64
+	Rejection_date    int64
+	Proposing_user    Shallow_user
+}
+
+type User struct {
+	User_id                   int
+	User_type                 string //one of unregistered, registered, moderator, or does_not_exist
+	Creation_date             int64
+	Display_name              string
+	Profile_image             string
+	Reputation                int
+	Reputation_change_day     int
+	Reputation_change_week    int
+	Reputation_change_month   int
+	Reputation_change_quarter int
+	Reputation_change_year    int
+	Age                       int
+	Last_access_date          int64
+	Last_modified_date        int64
+	Is_employee               bool
+	Link                      string
+	Website_url               string
+	Location                  string
+	Account_id                int
+	Timed_penalty_date        int64
+	Badge_counts              Badge_count
+	Question_count            int
+	Answer_count              int
+	Up_vote_count             int
+	Down_vote_count           int
+	About_me                  string
+	View_count                int
+	Accept_rate               int
 }

@@ -46,6 +46,11 @@ type revisionsCollection struct {
 }
 
 type suggestedEditsCollection struct {
-  Items []SuggestedEdit 
-  Error
+	Items []SuggestedEdit
+	Error
+}
+
+type usersCollection struct {
+	Items []User
+	Error
 }
