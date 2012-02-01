@@ -28,7 +28,7 @@ func (session Session) getPosts(path string, params map[string]string) (output [
 
 }
 
-// AllPosts returns all posts in site 
+// AllPosts returns all Posts in site 
 func (session Session) AllPosts(params map[string]string) (output []Post, error os.Error) {
 	return session.getPosts("posts", params)
 }

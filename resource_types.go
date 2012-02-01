@@ -129,16 +129,16 @@ type Question struct {
 }
 
 type QuestionTimeline struct {
-Timeline_type string //one of question, answer, comment, unaccepted_answer, accepted_answer, vote_aggregate, revision, or post_state_changed
-Question_id int
-Post_id int
-Comment_id int
-Revision_guid string
-Up_vote_count int
-Down_vote_count int
-Creation_date int64 
-User Shallow_user
-Owner Shallow_user
+	Timeline_type   string //one of question, answer, comment, unaccepted_answer, accepted_answer, vote_aggregate, revision, or post_state_changed
+	Question_id     int
+	Post_id         int
+	Comment_id      int
+	Revision_guid   string
+	Up_vote_count   int
+	Down_vote_count int
+	Creation_date   int64
+	User            Shallow_user
+	Owner           Shallow_user
 }
 
 type Reputation struct {
@@ -214,6 +214,16 @@ type SuggestedEdit struct {
 	Proposing_user    Shallow_user
 }
 
+type Tag struct {
+Name string
+Count int
+Is_required bool
+Is_moderator_only bool
+User_id int
+Has_synonyms bool
+Last_activity_date int64 
+}
+
 type User struct {
 	User_id                   int
 	User_type                 string //one of unregistered, registered, moderator, or does_not_exist
@@ -246,15 +256,15 @@ type User struct {
 }
 
 type UserTimeline struct {
-Creation_date int64
-Post_type string //one of question, or answer
-Timeline_type string //one of commented, asked, answered, badge, revision, accepted, reviewed, or suggested
-User_id int
-Post_id int
-Comment_id int
-Suggested_edit_id int
-Badge_id int
-Title string
-Detail string
-Link string
+	Creation_date     int64
+	Post_type         string //one of question, or answer
+	Timeline_type     string //one of commented, asked, answered, badge, revision, accepted, reviewed, or suggested
+	User_id           int
+	Post_id           int
+	Comment_id        int
+	Suggested_edit_id int
+	Badge_id          int
+	Title             string
+	Detail            string
+	Link              string
 }

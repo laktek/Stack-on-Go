@@ -32,7 +32,7 @@ func returnDummyResponseForPathAndParams(path string, params map[string]string, 
 
 		for key, value := range params {
 			if r.URL.Query().Get(key) != value {
-				t.Error("Expected value for param " + key + " not set.")
+				t.Error("Expected " + key + " to equal " + value + ". Got " + r.URL.Query().Get(key) )
 			}
 		}
 		w.Write(dummy_data)

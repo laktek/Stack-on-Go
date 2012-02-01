@@ -55,6 +55,11 @@ type suggestedEditsCollection struct {
 	Error
 }
 
+type tagsCollection struct {
+	Items []Tag
+	Error
+}
+
 type usersCollection struct {
 	Items []User
 	Error
