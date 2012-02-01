@@ -17,6 +17,7 @@ GOFILES=\
 	revisions.go\
 	suggested_edits.go\
 	tags.go\
+	tag_scores.go\
 	tag_synonyms.go\
 	tag_wikis.go\
 	top_tags.go\

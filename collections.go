@@ -62,6 +62,11 @@ type tagsCollection struct {
 	Error
 }
 
+type tagScoresCollection struct {
+	Items []TagScore
+	Error
+}
+
 type tagSynonymsCollection struct {
 	Items []TagSynonym
 	Error

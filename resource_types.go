@@ -224,6 +224,12 @@ type Tag struct {
 	Last_activity_date int64
 }
 
+type TagScore struct {
+User Shallow_user
+Score int
+Post_count int
+}
+
 type TagSynonym struct {
 	From_tag          string
 	To_tag            string
@@ -243,11 +249,11 @@ type TagWiki struct {
 }
 
 type TopTag struct {
-Tag_name string
-Question_score int
-Question_count int
-Answer_score int
-Answer_count int
+	Tag_name       string
+	Question_score int
+	Question_count int
+	Answer_score   int
+	Answer_count   int
 }
 
 type User struct {
