@@ -27,7 +27,7 @@ func TestAllUsers(t *testing.T) {
 	}
 
 	if users[0].User_type != "registered" {
-		t.Error("Post type invalid.")
+		t.Error("User type invalid.")
 	}
 
 	if users[0].Creation_date != 1222430705 {

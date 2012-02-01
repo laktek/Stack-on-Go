@@ -31,9 +31,9 @@ type Badge struct {
 }
 
 type Badge_count struct {
-Gold int
-Silver int
-Bronze int
+	Gold   int
+	Silver int
+	Bronze int
 }
 
 type Comment struct {
@@ -230,4 +230,18 @@ type User struct {
 	About_me                  string
 	View_count                int
 	Accept_rate               int
+}
+
+type UserTimeline struct {
+Creation_date int64
+Post_type string //one of question, or answer
+Timeline_type string //one of commented, asked, answered, badge, revision, accepted, reviewed, or suggested
+User_id int
+Post_id int
+Comment_id int
+Suggested_edit_id int
+Badge_id int
+Title string
+Detail string
+Link string
 }

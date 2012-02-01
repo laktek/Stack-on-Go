@@ -16,6 +16,7 @@ GOFILES=\
 	revisions.go\
 	suggested_edits.go\
 	users.go\
+	user_timelines.go\
 
 include $(GOROOT)/src/Make.pkg
 

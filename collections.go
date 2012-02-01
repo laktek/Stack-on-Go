@@ -54,3 +54,8 @@ type usersCollection struct {
 	Items []User
 	Error
 }
+
+type userTimelinesCollection struct {
+	Items []UserTimeline
+	Error
+}
