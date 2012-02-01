@@ -19,6 +19,7 @@ GOFILES=\
 	tags.go\
 	tag_synonyms.go\
 	tag_wikis.go\
+	top_tags.go\
 	users.go\
 	user_timelines.go\
 

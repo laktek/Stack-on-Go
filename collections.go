@@ -72,6 +72,11 @@ type tagWikisCollection struct {
 	Error
 }
 
+type topTagsCollection struct {
+	Items []TopTag
+	Error
+}
+
 type usersCollection struct {
 	Items []User
 	Error
