@@ -17,14 +17,19 @@ type commentsCollection struct {
 	Error
 }
 
+type errorsCollection struct {
+	Items []Error
+	Error
+}
+
 type infoCollection struct {
 	Items []Info
 	Error
 }
 
 type networkUsersCollection struct {
-  Items []NetworkUser
-  Error
+	Items []NetworkUser
+	Error
 }
 
 type postsCollection struct {
@@ -58,8 +63,8 @@ type revisionsCollection struct {
 }
 
 type sitesCollection struct {
-  Items []Site
-  Error
+	Items []Site
+	Error
 }
 
 type suggestedEditsCollection struct {

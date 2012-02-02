@@ -5,6 +5,7 @@ import (
 	"http"
 )
 
+// Sites returns all sites available in StackExchange network
 func Sites(params map[string]string) (output []Site, error os.Error) {
 	client := new(http.Client)
 

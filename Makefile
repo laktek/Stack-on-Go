@@ -7,6 +7,7 @@ GOFILES=\
 	badges.go\
 	comments.go\
 	collections.go\
+	errors.go\
 	info.go\
 	network_users.go\
 	posts.go\
