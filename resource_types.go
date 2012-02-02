@@ -30,7 +30,7 @@ type Badge struct {
 	Link        string
 }
 
-type Badge_count struct {
+type BadgeCount struct {
 	Gold   int
 	Silver int
 	Bronze int
@@ -69,6 +69,20 @@ type Info struct {
 	Total_users          int
 	New_active_users     int
 	Api_revision         string
+}
+
+type NetworkUser struct {
+Site_name string
+Site_url string
+User_id int
+Reputation int
+Account_id int
+Creation_date int64
+User_type string //one of unregistered, registered, moderator, or does_not_exist
+Badge_counts BadgeCount
+Last_access_date int64
+Answer_count int
+Question_count int
 }
 
 type Migration_info struct {
@@ -290,7 +304,7 @@ type User struct {
 	Location                  string
 	Account_id                int
 	Timed_penalty_date        int64
-	Badge_counts              Badge_count
+	Badge_counts              BadgeCount
 	Question_count            int
 	Answer_count              int
 	Up_vote_count             int

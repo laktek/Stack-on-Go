@@ -22,6 +22,11 @@ type infoCollection struct {
 	Error
 }
 
+type networkUsersCollection struct {
+  Items []NetworkUser
+  Error
+}
+
 type postsCollection struct {
 	Items []Post
 	Error

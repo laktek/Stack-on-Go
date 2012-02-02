@@ -8,6 +8,7 @@ GOFILES=\
 	comments.go\
 	collections.go\
 	info.go\
+	network_users.go\
 	posts.go\
 	privileges.go\
 	questions.go\
