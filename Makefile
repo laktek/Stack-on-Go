@@ -8,6 +8,7 @@ GOFILES=\
 	comments.go\
 	collections.go\
 	errors.go\
+	filters.go\
 	info.go\
 	network_users.go\
 	posts.go\

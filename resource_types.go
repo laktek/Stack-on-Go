@@ -55,6 +55,12 @@ type Error struct {
 	Error_message string
 }
 
+type Filter struct {
+	Filter          string
+	Included_fields []string
+	Filter_type     string //one of safe, unsafe, or invalid
+}
+
 type Info struct {
 	Total_questions      int
 	Total_unanswered     int
@@ -72,17 +78,17 @@ type Info struct {
 }
 
 type NetworkUser struct {
-Site_name string
-Site_url string
-User_id int
-Reputation int
-Account_id int
-Creation_date int64
-User_type string //one of unregistered, registered, moderator, or does_not_exist
-Badge_counts BadgeCount
-Last_access_date int64
-Answer_count int
-Question_count int
+	Site_name        string
+	Site_url         string
+	User_id          int
+	Reputation       int
+	Account_id       int
+	Creation_date    int64
+	User_type        string //one of unregistered, registered, moderator, or does_not_exist
+	Badge_counts     BadgeCount
+	Last_access_date int64
+	Answer_count     int
+	Question_count   int
 }
 
 type Migration_info struct {

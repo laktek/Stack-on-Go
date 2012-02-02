@@ -27,6 +27,11 @@ type infoCollection struct {
 	Error
 }
 
+type filtersCollection struct {
+  Items []Filter
+  Error
+}
+
 type networkUsersCollection struct {
 	Items []NetworkUser
 	Error
