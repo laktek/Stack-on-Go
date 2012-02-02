@@ -52,6 +52,11 @@ type revisionsCollection struct {
 	Error
 }
 
+type sitesCollection struct {
+  Items []Site
+  Error
+}
+
 type suggestedEditsCollection struct {
 	Items []SuggestedEdit
 	Error

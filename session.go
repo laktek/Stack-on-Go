@@ -23,14 +23,11 @@ func setHost(url string) {
 }
 
 // construct the endpoint URL
-func (session Session) setupEndpoint(path string, params map[string]string) *url.URL {
+func setupEndpoint(path string, params map[string]string) *url.URL {
 	base_url, _ := url.Parse(host)
 	endpoint, _ := base_url.Parse("/2.0/" + path)
 
-	//set parameters for querystring
 	query := endpoint.Query()
-	query.Set("site", session.Site)
-
 	for key, value := range params {
 		query.Set(key, value)
 	}
@@ -38,12 +35,6 @@ func (session Session) setupEndpoint(path string, params map[string]string) *url
 	endpoint.RawQuery = query.Encode()
 
 	return endpoint
-}
-
-// make the request
-func (session Session) get(section string, params map[string]string) (*http.Response, os.Error) {
-	client := new(http.Client)
-	return client.Get(session.setupEndpoint(section, params).String())
 }
 
 // parse the response
@@ -69,4 +60,14 @@ func parseResponse(response *http.Response, result interface{}) (interface{}, os
 	}
 
 	return result, err2
+}
+
+// make the request
+func (session Session) get(section string, params map[string]string) (*http.Response, os.Error) {
+	client := new(http.Client)
+
+	//set parameters for querystring
+	params["site"] = session.Site
+
+	return client.Get(setupEndpoint(section, params).String())
 }

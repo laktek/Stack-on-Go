@@ -15,6 +15,7 @@ GOFILES=\
 	reputations.go\
 	resource_types.go\
 	revisions.go\
+	sites.go\
 	suggested_edits.go\
 	tags.go\
 	tag_scores.go\

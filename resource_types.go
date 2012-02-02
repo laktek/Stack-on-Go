@@ -11,7 +11,7 @@ type Answer struct {
 	Community_owned_date int64
 	Is_accepted          bool
 	Body                 string
-	Owner                Shallow_user
+	Owner                ShallowUser
 	Title                string
 	Up_vote_count        int
 	Down_vote_count      int
@@ -26,7 +26,7 @@ type Badge struct {
 	Description string
 	Award_count int
 	Badge_type  string
-	User        Shallow_user
+	User        ShallowUser
 	Link        string
 }
 
@@ -44,8 +44,8 @@ type Comment struct {
 	Score         int
 	Edited        bool
 	Body          string
-	Owner         Shallow_user
-	Reply_to_user Shallow_user
+	Owner         ShallowUser
+	Reply_to_user ShallowUser
 	Link          string
 }
 
@@ -81,7 +81,7 @@ type Post struct {
 	Post_id            int
 	Post_type          string
 	Body               string
-	Owner              Shallow_user
+	Owner              ShallowUser
 	Creation_date      int64
 	Last_activity_date int64
 	Last_edit_date     int64
@@ -121,7 +121,7 @@ type Question struct {
 	Down_vote_count      int
 	Favorite_count       int
 	View_count           int
-	Owner                Shallow_user
+	Owner                ShallowUser
 	Comments             []Comment
 	Answers              []Answer
 	Link                 string
@@ -137,8 +137,8 @@ type QuestionTimeline struct {
 	Up_vote_count   int
 	Down_vote_count int
 	Creation_date   int64
-	User            Shallow_user
-	Owner           Shallow_user
+	User            ShallowUser
+	Owner           ShallowUser
 }
 
 type Reputation struct {
@@ -168,10 +168,17 @@ type Revision struct {
 	Title              string
 	Tags               []string
 	Set_community_wiki bool
-	User               Shallow_user
+	User               ShallowUser
 }
 
-type Shallow_user struct {
+type RelatedSite struct {
+	Name               string
+	Site_url           string
+	Relation           string //one of parent, meta, chat, or other
+	Api_site_parameter string
+}
+
+type ShallowUser struct {
 	User_id       int
 	Display_name  string
 	Reputation    int
@@ -181,23 +188,29 @@ type Shallow_user struct {
 }
 
 type Site struct {
-	Site_type          string
-	Name               string
-	Logo_url           string
-	Api_site_parameter string
-	Site_url           string
-	Audience           string
-	Icon_url           string
-	Aliases            []string
-	Site_state         string //one of normal, closed_beta, open_beta, or linked_meta
-	//styling styling
-	Closed_beta_date int64
-	Open_beta_date   int64
-	Launch_date      int64
-	Favicon_url      string
-	//related_sites an array of related_site
+	Site_type           string
+	Name                string
+	Logo_url            string
+	Api_site_parameter  string
+	Site_url            string
+	Audience            string
+	Icon_url            string
+	Aliases             []string
+	Site_state          string //one of normal, closed_beta, open_beta, or linked_meta
+	Styling             Styling
+	Closed_beta_date    int64
+	Open_beta_date      int64
+	Launch_date         int64
+	Favicon_url         string
+	Related_sites       []RelatedSite
 	Twitter_account     string
 	Markdown_extensions []string
+}
+
+type Styling struct {
+	Link_color           string
+	Tag_foreground_color string
+	Tag_background_color string
 }
 
 type SuggestedEdit struct {
@@ -211,7 +224,7 @@ type SuggestedEdit struct {
 	Creation_date     int64
 	Approval_date     int64
 	Rejection_date    int64
-	Proposing_user    Shallow_user
+	Proposing_user    ShallowUser
 }
 
 type Tag struct {
@@ -225,9 +238,9 @@ type Tag struct {
 }
 
 type TagScore struct {
-User Shallow_user
-Score int
-Post_count int
+	User       ShallowUser
+	Score      int
+	Post_count int
 }
 
 type TagSynonym struct {
@@ -244,8 +257,8 @@ type TagWiki struct {
 	Excerpt                string
 	Body_last_edit_date    int64
 	Excerpt_last_edit_date int64
-	Last_body_editor       Shallow_user
-	Last_excerpt_editor    Shallow_user
+	Last_body_editor       ShallowUser
+	Last_excerpt_editor    ShallowUser
 }
 
 type TopTag struct {
