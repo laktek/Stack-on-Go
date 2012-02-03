@@ -43,6 +43,17 @@ func (session Session) Users(ids []int, params map[string]string) (output []User
 	return session.getUsers(request_path, params)
 }
 
+// AuthenticatedUser returns the user associated with the passed auth_token.
+func (session Session) AuthenticatedUser(params map[string]string, auth map[string]string) (output User, error os.Error) {
+	//add auth params
+	for key, value := range auth {
+		params[key] = value
+	}
+
+  results, error := session.getUsers("me", params)
+  return results[0], error
+}
+
 // Moderators returns those users on a site who can exercise moderation powers. 
 func (session Session) Moderators(params map[string]string) (output []User, error os.Error) {
 	return session.getUsers("users/moderators", params)

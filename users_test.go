@@ -57,6 +57,39 @@ func TestUsers(t *testing.T) {
 
 }
 
+func TestAuthenticatedUser(t *testing.T) {
+	dummy_server := returnDummyResponseForPathAndParams("/2.0/me", map[string]string{"key": "app123", "access_token": "abc"}, dummyUsersResponse, t)
+	defer dummy_server.Close()
+
+	session := NewSession("stackoverflow")
+	user, err := session.AuthenticatedUser(map[string]string{"sort": "votes", "order": "desc", "page": "1"}, map[string]string{"key": "app123", "access_token": "abc"})
+
+	if err != nil {
+		t.Error(err.String())
+	}
+
+  if user.User_id != 22656 {
+		t.Error("ID invalid.")
+	}
+
+	if user.User_type != "registered" {
+		t.Error("User type invalid.")
+	}
+
+	if user.Creation_date != 1222430705 {
+		t.Error("Date invalid.")
+	}
+
+	if user.Is_employee != false {
+		t.Error("Boolean doesn't match.")
+	}
+
+	if user.Badge_counts.Gold != 105 {
+		t.Error("Badge count is invalid.")
+	}
+
+}
+
 func TestModerators(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/moderators", dummyUsersResponse, t)
 	defer dummy_server.Close()
