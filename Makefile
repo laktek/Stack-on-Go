@@ -11,6 +11,7 @@ GOFILES=\
 	events.go\
 	filters.go\
 	info.go\
+	inbox.go\
 	network_users.go\
 	posts.go\
 	privileges.go\

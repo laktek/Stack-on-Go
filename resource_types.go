@@ -56,17 +56,30 @@ type Error struct {
 }
 
 type Event struct {
-Event_type	string //one of question_posted, answer_posted, comment_posted, post_edited, or user_created
-Event_id	int //refers to an event
-Creation_date int64	
-Link	string
-Excerpt	string
+	Event_type    string //one of question_posted, answer_posted, comment_posted, post_edited, or user_created
+	Event_id      int    //refers to an event
+	Creation_date int64
+	Link          string
+	Excerpt       string
 }
 
 type Filter struct {
 	Filter          string
 	Included_fields []string
 	Filter_type     string //one of safe, unsafe, or invalid
+}
+
+type InboxItem struct {
+	Item_type     string //one of comment, chat_message, new_answer, careers_message, careers_invitations, or meta_question
+	Question_id   int    // refers to a question
+	Answer_id     int    // refers to an answer
+	Comment_id    int    //refers to a comment
+	Title         string
+	Creation_date int64
+	Is_unread     bool
+	Site          Site
+	Body          string
+	Link          string
 }
 
 type Info struct {

@@ -32,6 +32,11 @@ type infoCollection struct {
 	Error
 }
 
+type inboxItemsCollection struct {
+	Items []InboxItem
+	Error
+}
+
 type filtersCollection struct {
   Items []Filter
   Error

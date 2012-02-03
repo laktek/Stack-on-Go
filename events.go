@@ -26,7 +26,7 @@ func (session Session) getEvents(path string, params map[string]string) (output 
 }
 
 // Events returns a stream of events that have occurred on the site 
-// This method requires authentication
+// This method requires an access_token.
 func (session Session) Events(params map[string]string, auth map[string]string) (output []Event, error os.Error) {
 	//add auth params
   for key, value := range auth {
