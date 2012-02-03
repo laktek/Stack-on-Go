@@ -22,6 +22,11 @@ type errorsCollection struct {
 	Error
 }
 
+type eventsCollection struct {
+	Items []Event
+	Error
+}
+
 type infoCollection struct {
 	Items []Info
 	Error

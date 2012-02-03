@@ -55,6 +55,14 @@ type Error struct {
 	Error_message string
 }
 
+type Event struct {
+Event_type	string //one of question_posted, answer_posted, comment_posted, post_edited, or user_created
+Event_id	int //refers to an event
+Creation_date int64	
+Link	string
+Excerpt	string
+}
+
 type Filter struct {
 	Filter          string
 	Included_fields []string
