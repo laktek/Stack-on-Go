@@ -11,8 +11,7 @@ func TestInbox(t *testing.T) {
 	//change the host to use the test server
 	setHost(dummy_server.URL)
 
-	session := NewSession("stackoverflow")
-	inbox_items, err := session.Inbox(map[string]string{"page": "1"}, map[string]string{"key": "app123", "access_token": "abc"})
+	inbox_items, err := Inbox(map[string]string{"page": "1"}, map[string]string{"key": "app123", "access_token": "abc"})
 
 	if err != nil {
 		t.Error(err.String())
@@ -51,8 +50,7 @@ func TestUnreadInbox(t *testing.T) {
 	//change the host to use the test server
 	setHost(dummy_server.URL)
 
-	session := NewSession("stackoverflow")
-	_, err := session.UnreadInbox(map[string]string{"page": "1"}, map[string]string{"key": "app123", "access_token": "abc"})
+	_, err := UnreadInbox(map[string]string{"page": "1"}, map[string]string{"key": "app123", "access_token": "abc"})
 
 	if err != nil {
 		t.Error(err.String())

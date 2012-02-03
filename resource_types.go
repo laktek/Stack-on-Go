@@ -1,5 +1,12 @@
 package stackongo
 
+type AccessToken struct {
+Access_token	string
+Expires_on_date int64	
+Account_id	int
+Scope	[]string
+}
+
 type Answer struct {
 	Question_id          int
 	Answer_id            int

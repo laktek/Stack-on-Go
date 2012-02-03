@@ -3,6 +3,7 @@ include $(GOROOT)/src/Make.inc
 TARG=stackongo
 GOFILES=\
 	session.go\
+	access_tokens.go\
 	answers.go\
 	badges.go\
 	comments.go\

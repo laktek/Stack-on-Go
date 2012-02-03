@@ -31,7 +31,7 @@ func getInbox(path string, params map[string]string) (output []InboxItem, error 
 
 // Inbox returns authenticated user's inbox. 
 // This method requires an access_token, with a scope containing "read_inbox".
-func (session Session) Inbox(params map[string]string, auth map[string]string) (output []InboxItem, error os.Error) {
+func Inbox(params map[string]string, auth map[string]string) (output []InboxItem, error os.Error) {
 	//add auth params
 	for key, value := range auth {
 		params[key] = value
@@ -42,7 +42,7 @@ func (session Session) Inbox(params map[string]string, auth map[string]string) (
 
 // UnreadInbox returns unread items in an authenticated user's inbox. 
 // This method requires an access_token, with a scope containing "read_inbox".
-func (session Session) UnreadInbox(params map[string]string, auth map[string]string) (output []InboxItem, error os.Error) {
+func UnreadInbox(params map[string]string, auth map[string]string) (output []InboxItem, error os.Error) {
 	//add auth params
 	for key, value := range auth {
 		params[key] = value

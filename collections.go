@@ -2,6 +2,11 @@ package stackongo
 
 //All collection types are private
 
+type accessTokensCollection struct {
+	Items []AccessToken
+	Error
+}
+
 type answersCollection struct {
 	Items []Answer
 	Error
