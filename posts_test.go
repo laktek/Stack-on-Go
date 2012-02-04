@@ -40,12 +40,12 @@ func TestAllPosts(t *testing.T) {
 
 }
 
-func TestPosts(t *testing.T) {
+func TestGetPosts(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/posts/1;2;3", dummyPostsResponse, t)
 	defer dummy_server.Close()
 
 	session := NewSession("stackoverflow")
-	_, err := session.Posts([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
+	_, err := session.GetPosts([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
 		t.Error(err.String())

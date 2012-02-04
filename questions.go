@@ -32,7 +32,7 @@ func (session Session) AllQuestions(params map[string]string) (output *Questions
 }
 
 // Questions returns the questions for given ids
-func (session Session) Questions(ids []int, params map[string]string) (output *Questions, error os.Error) {
+func (session Session) GetQuestions(ids []int, params map[string]string) (output *Questions, error os.Error) {
 	string_ids := []string{}
 	for _, v := range ids {
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))

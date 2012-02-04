@@ -36,12 +36,12 @@ func TestAllAnswers(t *testing.T) {
 
 }
 
-func TestAnswers(t *testing.T) {
+func TestGetAnswers(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/answers/1;2;3", dummyAnswersResponse, t)
 	defer dummy_server.Close()
 
 	session := NewSession("stackoverflow")
-	_, err := session.Answers([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
+	_, err := session.GetAnswers([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
 		t.Error(err.String())

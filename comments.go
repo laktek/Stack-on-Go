@@ -32,7 +32,7 @@ func (session Session) AllComments(params map[string]string) (output *Comments, 
 }
 
 // Comments returns the comments with the given ids
-func (session Session) Comments(ids []int, params map[string]string) (output *Comments, error os.Error) {
+func (session Session) GetComments(ids []int, params map[string]string) (output *Comments, error os.Error) {
 	string_ids := []string{}
 	for _, v := range ids {
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))

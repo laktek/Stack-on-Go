@@ -41,12 +41,12 @@ func TestAllSuggestedEdits(t *testing.T) {
 
 }
 
-func TestSuggestedEdits(t *testing.T) {
+func TestGetSuggestedEdits(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/suggested-edits/1;2;3", dummySuggestedEditsResponse, t)
 	defer dummy_server.Close()
 
 	session := NewSession("stackoverflow")
-	_, err := session.SuggestedEdits([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
+	_, err := session.GetSuggestedEdits([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
 		t.Error(err.String())

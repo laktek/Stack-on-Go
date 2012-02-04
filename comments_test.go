@@ -40,12 +40,12 @@ func TestAllComments(t *testing.T) {
 
 }
 
-func TestComments(t *testing.T) {
+func TestGetComments(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/comments/1;2;3", dummyCommentsResponse, t)
 	defer dummy_server.Close()
 
 	session := NewSession("stackoverflow")
-	_, err := session.Comments([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
+	_, err := session.GetComments([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
 		t.Error(err.String())

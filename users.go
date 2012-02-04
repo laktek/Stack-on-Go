@@ -32,7 +32,7 @@ func (session Session) AllUsers(params map[string]string) (output *Users, error 
 }
 
 // Users returns the users with the given ids
-func (session Session) Users(ids []int, params map[string]string) (output *Users, error os.Error) {
+func (session Session) GetUsers(ids []int, params map[string]string) (output *Users, error os.Error) {
 	string_ids := []string{}
 	for _, v := range ids {
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))

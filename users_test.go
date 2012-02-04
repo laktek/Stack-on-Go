@@ -44,12 +44,12 @@ func TestAllUsers(t *testing.T) {
 
 }
 
-func TestUsers(t *testing.T) {
+func TestGetUsers(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3", dummyUsersResponse, t)
 	defer dummy_server.Close()
 
 	session := NewSession("stackoverflow")
-	_, err := session.Users([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
+	_, err := session.GetUsers([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
 		t.Error(err.String())

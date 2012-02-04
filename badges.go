@@ -32,7 +32,7 @@ func (session Session) AllBadges(params map[string]string) (output *Badges, erro
 }
 
 // Badges returns the badges with the given ids
-func (session Session) Badges(ids []int, params map[string]string) (output *Badges, error os.Error) {
+func (session Session) GetBadges(ids []int, params map[string]string) (output *Badges, error os.Error) {
 	string_ids := []string{}
 	for _, v := range ids {
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))

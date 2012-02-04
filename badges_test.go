@@ -36,12 +36,12 @@ func TestAllBadges(t *testing.T) {
 
 }
 
-func TestBadges(t *testing.T) {
+func TestGetBadges(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/badges/1;2;3", dummyBadgesResponse, t)
 	defer dummy_server.Close()
 
 	session := NewSession("stackoverflow")
-	_, err := session.Badges([]int{1, 2, 3}, map[string]string{})
+	_, err := session.GetBadges([]int{1, 2, 3}, map[string]string{})
 
 	if err != nil {
 		t.Error(err.String())

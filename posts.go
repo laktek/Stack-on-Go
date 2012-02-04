@@ -32,7 +32,7 @@ func (session Session) AllPosts(params map[string]string) (output *Posts, error 
 }
 
 // Posts returns the posts with the given ids
-func (session Session) Posts(ids []int, params map[string]string) (output *Posts, error os.Error) {
+func (session Session) GetPosts(ids []int, params map[string]string) (output *Posts, error os.Error) {
 	string_ids := []string{}
 	for _, v := range ids {
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))

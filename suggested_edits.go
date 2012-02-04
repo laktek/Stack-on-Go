@@ -32,7 +32,7 @@ func (session Session) AllSuggestedEdits(params map[string]string) (output *Sugg
 }
 
 // SuggestedEdits returns suggested edits identified in ids. 
-func (session Session) SuggestedEdits(ids []int, params map[string]string) (output *SuggestedEdits, error os.Error) {
+func (session Session) GetSuggestedEdits(ids []int, params map[string]string) (output *SuggestedEdits, error os.Error) {
 	string_ids := []string{}
 	for _, v := range ids {
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))
