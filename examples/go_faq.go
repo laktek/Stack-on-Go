@@ -5,7 +5,7 @@ import "time"
 import "github.com/laktek/stack-on-go"
 
 func main() {
-	fmt.Printf("Frequently Asked Questions on Go:\n")
+	fmt.Printf("Frequently Asked Questions about Go:\n")
 
 	session := stackongo.NewSession("stackoverflow")
 	questions, err := session.FAQForTags([]string{"Go"}, map[string]string{})
