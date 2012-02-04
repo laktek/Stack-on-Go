@@ -3,14 +3,13 @@ package stackongo
 import (
 	"testing"
 	"url"
-	"reflect"
 )
 
 func TestAuthURL(t *testing.T) {
-	given_uri, _ := url.Parse("https://stackexchange.com/oauth?client_id=abc,redirect_url=www.my_app.com&state=test&scope=read_inbox%2Cno_expiry")
 	result_uri, _ := url.Parse(AuthURL("abc", "www.my_app.com", map[string]string{"state": "test", "scope": "read_inbox,no_expiry"}))
 
-	if reflect.DeepEqual(result_uri, given_uri) {
+	if result_uri.Query().Encode() != "state=test&scope=read_inbox%2Cno_expiry&redirect_uri=www.my_app.com&client_id=abc" {
+		print(result_uri.Query().Encode())
 		t.Error("URL doesn't match")
 	}
 }

@@ -15,6 +15,7 @@ GOFILES=\
 	info.go\
 	inbox.go\
 	network_users.go\
+	params.go\
 	posts.go\
 	privileges.go\
 	questions.go\

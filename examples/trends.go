@@ -15,6 +15,11 @@ func main() {
 
 	for _, tag := range tags {
 		results, err := session.AllQuestions(map[string]string{"tagged": tag, "filter": "total", "fromdate": fmt.Sprintf("%v", from_date)})
+		//params_list := make(Params)
+		//params_list.Add("tagged", tag)
+		//params_list.Add("filter", "total")
+		//params_list.Add("fromdate", "total")
+		//results, err := session.AllQuestions(params_list)
 
 		if err != nil {
 			fmt.Printf(err.String())
