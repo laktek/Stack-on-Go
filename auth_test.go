@@ -15,14 +15,14 @@ func TestAuthURL(t *testing.T) {
 	}
 }
 
-func TestGenerateAccessTokenValid(t *testing.T) {
+func TestObtainAccessTokenValid(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/oauth/access_token", dummyAccessTokenResponse, t)
 	defer dummy_server.Close()
 
 	//change the host to use the test server
 	auth_url = dummy_server.URL + "/oauth/access_token"
 
-	token_output, _ := GenerateAccessToken("abc", "secret", "def", "www.my_app.com")
+	token_output, _ := ObtainAccessToken("abc", "secret", "def", "www.my_app.com")
 
 	if token_output["access_token"] != "my_token" {
 		t.Error("invalid access token.")
@@ -34,14 +34,14 @@ func TestGenerateAccessTokenValid(t *testing.T) {
 
 }
 
-func TestGenerateAccessTokenInvalid(t *testing.T) {
+func TestObtainAccessTokenInvalid(t *testing.T) {
 	dummy_server := returnDummyErrorResponseForPath("/oauth/access_token", dummyAccessTokenErrorResponse, t)
 	defer dummy_server.Close()
 
 	//change the host to use the test server
 	auth_url = dummy_server.URL + "/oauth/access_token"
 
-	_, error := GenerateAccessToken("abc", "secret", "def", "www.my_app.com")
+	_, error := ObtainAccessToken("abc", "secret", "def", "www.my_app.com")
 
 	if error.String() != "invalid_request: some reason" {
 		t.Error("invalid error message.")

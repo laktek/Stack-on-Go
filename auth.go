@@ -35,7 +35,7 @@ func AuthURL(client_id, redirect_uri string, options map[string]string) (output 
 	return auth_url.String()
 }
 
-func GenerateAccessToken(client_id, client_secret, code, redirect_uri string) (output map[string]string, error os.Error) {
+func ObtainAccessToken(client_id, client_secret, code, redirect_uri string) (output map[string]string, error os.Error) {
 	client := new(http.Client)
 
 	parsed_auth_url, _ := url.Parse(auth_url)
