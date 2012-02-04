@@ -51,7 +51,7 @@ func returnDummyErrorResponseForPath(path string, dummy_response string, t *test
 		if r.URL.Path != path {
 			t.Error("Path doesn't match")
 		}
-    w.WriteHeader(400)
+		w.WriteHeader(400)
 		w.Write(dummy_data)
 	}))
 
@@ -60,3 +60,58 @@ func returnDummyErrorResponseForPath(path string, dummy_response string, t *test
 
 	return dummy_server
 }
+
+func TestMetaInfo(t *testing.T) {
+	dummy_server := returnDummyResponseForPath("/2.0/questions", dummyMetaInfoResponse, t)
+	defer dummy_server.Close()
+
+	//change the host to use the test server
+	setHost(dummy_server.URL)
+
+	session := NewSession("stackoverflow")
+	results, err := session.AllQuestions(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
+
+	if err != nil {
+		t.Error(err.String())
+	}
+
+	if results.Has_more != true {
+		t.Error("Has more field invalid.")
+	}
+
+	if results.Quota_remaining != 9989 {
+		t.Error("Quota remaining invalid.")
+	}
+
+	if results.Quota_max != 10000 {
+		t.Error("Quota max invalid.")
+	}
+
+}
+
+func TestRequestError(t *testing.T) {
+	dummy_server := returnDummyErrorResponseForPath("/2.0/questions", dummyErrorResponse, t)
+	defer dummy_server.Close()
+
+	//change the host to use the test server
+	setHost(dummy_server.URL)
+
+	session := NewSession("stackoverflow")
+	_, err := session.AllQuestions(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
+
+  if err.String() != "no_method: simulated" {
+		t.Error("Y U GAVE NO ERROR?")
+	}
+
+}
+
+//test data
+
+var dummyMetaInfoResponse string = `
+{
+  "items": [],
+  "quota_remaining": 9989,
+  "quota_max": 10000,
+  "has_more": true
+}
+`
