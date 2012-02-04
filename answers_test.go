@@ -18,19 +18,19 @@ func TestAllAnswers(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(answers) != 3 {
+	if len(answers.Items) != 3 {
 		t.Error("Number of items wrong.")
 	}
 
-	if answers[0].Answer_id != 9051117 {
+	if answers.Items[0].Answer_id != 9051117 {
 		t.Error("ID invalid.")
 	}
 
-	if answers[0].Owner.Display_name != "Dalar" {
+	if answers.Items[0].Owner.Display_name != "Dalar" {
 		t.Error("Owner invalid.")
 	}
 
-	if answers[0].Creation_date != 1327814223 {
+	if answers.Items[0].Creation_date != 1327814223 {
 		t.Error("Date invalid.")
 	}
 

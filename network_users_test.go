@@ -17,23 +17,23 @@ func TestAssociatedAccounts(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(users) != 3 {
+	if len(users.Items) != 3 {
 		t.Error("Number of items wrong.")
 	}
 
-	if users[0].Site_name != "Stack Overflow" {
+	if users.Items[0].Site_name != "Stack Overflow" {
 		t.Error("Site name invalid.")
 	}
 
-	if users[0].User_id != 1 {
+	if users.Items[0].User_id != 1 {
 		t.Error("user id invalid.")
 	}
 
-	if users[0].Badge_counts.Gold != 25 {
+	if users.Items[0].Badge_counts.Gold != 25 {
 		t.Error("badge count invalid.")
 	}
 
-	if users[0].Last_access_date != 1328143328 {
+	if users.Items[0].Last_access_date != 1328143328 {
 		t.Error("last access date invalid.")
 	}
 

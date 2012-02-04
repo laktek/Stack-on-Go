@@ -18,19 +18,19 @@ func TestRevisions(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(revisions) != 3 {
+	if len(revisions.Items) != 3 {
 		t.Error("Number of items are wrong.")
 	}
 
-	if revisions[0].Revision_guid != "C8AF433A-8DFE-4906-9418-EB7D5B4522EA" {
+	if revisions.Items[0].Revision_guid != "C8AF433A-8DFE-4906-9418-EB7D5B4522EA" {
 		t.Error("guid is invalid.")
 	}
 
-	if revisions[0].Creation_date != 1220598880 {
+	if revisions.Items[0].Creation_date != 1220598880 {
 		t.Error("Creation date is invalid.")
 	}
 
-	if revisions[0].User.Display_name != "JasonMichael" {
+	if revisions.Items[0].User.Display_name != "JasonMichael" {
 		t.Error("User is invalid.")
 	}
 

@@ -18,15 +18,15 @@ func TestAllPrivileges(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(privileges) != 3 {
+	if len(privileges.Items) != 3 {
 		t.Error("Number of items wrong.")
 	}
 
-	if privileges[0].Short_description != "create posts" {
+	if privileges.Items[0].Short_description != "create posts" {
 		t.Error("Short description is invalid.")
 	}
 
-	if privileges[0].Reputation != 1 {
+	if privileges.Items[0].Reputation != 1 {
 		t.Error("Reputation is invalid.")
 	}
 

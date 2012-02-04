@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-func getAccessTokens(path string, params map[string]string) (output []AccessToken, error os.Error) {
+func getAccessTokens(path string, params map[string]string) (output *AccessTokens, error os.Error) {
 
 	client := new(http.Client)
 
@@ -18,33 +18,31 @@ func getAccessTokens(path string, params map[string]string) (output []AccessToke
 		return output, err
 	}
 
-	parsed_response, error := parseResponse(response, new(accessTokensCollection))
-	collection := parsed_response.(*accessTokensCollection)
+	parsed_response, error := parseResponse(response, new(AccessTokens))
+	output = parsed_response.(*AccessTokens)
 
 	if error != nil {
 		//overload the generic error with details
-		error = os.NewError(collection.Error_name + ": " + collection.Error_message)
-	} else {
-		output = collection.Items
+		error = os.NewError(output.Error_name + ": " + output.Error_message)
 	}
 
-	return output, error
+	return
 }
 
 // InspectAccessTokens returns the properties for a set of access tokens. 
-func InspectAccessTokens(access_tokens []string, params map[string]string) (output []AccessToken, error os.Error) {
+func InspectAccessTokens(access_tokens []string, params map[string]string) (output *AccessTokens, error os.Error) {
 	request_path := fmt.Sprintf("access-tokens/%v", strings.Join(access_tokens, ";"))
 	return getAccessTokens(request_path, params)
 }
 
 // DeauthenticateAccessTokens de-authorizes the app for the users with given access tokens. 
-func DeauthenticateAccessTokens(access_tokens []string, params map[string]string) (output []AccessToken, error os.Error) {
+func DeauthenticateAccessTokens(access_tokens []string, params map[string]string) (output *AccessTokens, error os.Error) {
 	request_path := fmt.Sprintf("apps/%v/de-authenticate", strings.Join(access_tokens, ";"))
 	return getAccessTokens(request_path, params)
 }
 
 // InvalidateAccessTokens invalidates the given access tokens. 
-func InvalidateAccessTokens(access_tokens []string, params map[string]string) (output []AccessToken, error os.Error) {
+func InvalidateAccessTokens(access_tokens []string, params map[string]string) (output *AccessTokens, error os.Error) {
 	request_path := fmt.Sprintf("access-tokens/%v/invalidate", strings.Join(access_tokens, ";"))
 	return getAccessTokens(request_path, params)
 }

@@ -18,19 +18,19 @@ func TestEvents(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(events) != 3 {
+	if len(events.Items) != 3 {
 		t.Error("Number of items wrong.")
 	}
 
-	if events[0].Event_type != "comment_posted" {
+	if events.Items[0].Event_type != "comment_posted" {
 		t.Error("Event type invalid.")
 	}
 
-	if events[0].Event_id != 11462515 {
+	if events.Items[0].Event_id != 11462515 {
 		t.Error("Event id invalid.")
 	}
 
-	if events[0].Creation_date != 1328226264 {
+	if events.Items[0].Creation_date != 1328226264 {
 		t.Error("Date invalid.")
 	}
 

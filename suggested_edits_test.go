@@ -19,23 +19,23 @@ func TestAllSuggestedEdits(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(suggested_edits) != 2 {
+	if len(suggested_edits.Items) != 2 {
 		t.Error("Number of items wrong.")
 	}
 
-	if suggested_edits[0].Suggested_edit_id != 190741 {
+	if suggested_edits.Items[0].Suggested_edit_id != 190741 {
 		t.Error("ID invalid.")
 	}
 
-	if suggested_edits[0].Proposing_user.Display_name != "Natali" {
+	if suggested_edits.Items[0].Proposing_user.Display_name != "Natali" {
 		t.Error("Owner invalid.")
 	}
 
-	if suggested_edits[0].Creation_date != 1327922327 {
+	if suggested_edits.Items[0].Creation_date != 1327922327 {
 		t.Error("Date invalid.")
 	}
 
-	if strings.Join(suggested_edits[1].Tags, ",") != "c#,jquery,asp.net,html" {
+	if strings.Join(suggested_edits.Items[1].Tags, ",") != "c#,jquery,asp.net,html" {
 		t.Error("Tags invalid.")
 	}
 

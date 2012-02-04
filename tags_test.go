@@ -18,19 +18,19 @@ func TestAllTags(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(tags) != 3 {
+	if len(tags.Items) != 3 {
 		t.Error("Number of items wrong.")
 	}
 
-	if tags[0].Name != "c#" {
+	if tags.Items[0].Name != "c#" {
 		t.Error("Name invalid.")
 	}
 
-	if tags[0].Count != 261768 {
+	if tags.Items[0].Count != 261768 {
 		t.Error("Tag count invalid.")
 	}
 
-	if tags[0].Has_synonyms != true {
+	if tags.Items[0].Has_synonyms != true {
 		t.Error("boolean invalid.")
 	}
 

@@ -18,23 +18,23 @@ func TestAllComments(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(comments) != 3 {
+	if len(comments.Items) != 3 {
 		t.Error("Number of items wrong.")
 	}
 
-	if comments[0].Comment_id != 11354978 {
+	if comments.Items[0].Comment_id != 11354978 {
 		t.Error("ID invalid.")
 	}
 
-	if comments[0].Owner.Display_name != "mynameisneo" {
+	if comments.Items[0].Owner.Display_name != "mynameisneo" {
 		t.Error("Owner invalid.")
 	}
 
-	if comments[1].Reply_to_user.Display_name != "user1056824" {
+	if comments.Items[1].Reply_to_user.Display_name != "user1056824" {
 		t.Error("Owner invalid.")
 	}
 
-	if comments[0].Creation_date != 1327798867 {
+	if comments.Items[0].Creation_date != 1327798867 {
 		t.Error("Date invalid.")
 	}
 

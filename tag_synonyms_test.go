@@ -18,23 +18,23 @@ func TestAllTagSynonyms(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(tag_synonyms) != 3 {
+	if len(tag_synonyms.Items) != 3 {
 		t.Error("Number of items wrong.")
 	}
 
-	if tag_synonyms[0].From_tag != "acoustic-echo-cancellatio" {
+	if tag_synonyms.Items[0].From_tag != "acoustic-echo-cancellatio" {
 		t.Error("From tag invalid.")
 	}
 
-	if tag_synonyms[0].To_tag != "aec" {
+	if tag_synonyms.Items[0].To_tag != "aec" {
 		t.Error("To tag invalid.")
 	}
 
-	if tag_synonyms[0].Applied_count != 0 {
+	if tag_synonyms.Items[0].Applied_count != 0 {
 		t.Error("Applied count invalid.")
 	}
 
-	if tag_synonyms[0].Creation_date != 1327953917 {
+	if tag_synonyms.Items[0].Creation_date != 1327953917 {
 		t.Error("Creation date invalid.")
 	}
 

@@ -18,23 +18,23 @@ func TestAllPosts(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(posts) != 3 {
+	if len(posts.Items) != 3 {
 		t.Error("Number of items wrong.")
 	}
 
-	if posts[0].Post_id != 9051104 {
+	if posts.Items[0].Post_id != 9051104 {
 		t.Error("ID invalid.")
 	}
 
-	if posts[0].Post_type != "question" {
+	if posts.Items[0].Post_type != "question" {
 		t.Error("Post type invalid.")
 	}
 
-	if posts[0].Owner.Display_name != "atbebtg" {
+	if posts.Items[0].Owner.Display_name != "atbebtg" {
 		t.Error("Owner invalid.")
 	}
 
-	if posts[0].Creation_date != 1327813841 {
+	if posts.Items[0].Creation_date != 1327813841 {
 		t.Error("Date invalid.")
 	}
 

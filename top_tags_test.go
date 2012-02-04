@@ -18,19 +18,19 @@ func TestTopTagsByAnswerForUser(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(tags) != 3 {
+	if len(tags.Items) != 3 {
 		t.Error("Number of items wrong.")
 	}
 
-	if tags[0].Tag_name != "sql-server" {
+	if tags.Items[0].Tag_name != "sql-server" {
 		t.Error("Name invalid.")
 	}
 
-	if tags[0].Answer_score != 89 {
+	if tags.Items[0].Answer_score != 89 {
 		t.Error("Answer score invalid.")
 	}
 
-	if tags[0].Answer_count != 8 {
+	if tags.Items[0].Answer_count != 8 {
 		t.Error("Answer count invalid.")
 	}
 
@@ -50,19 +50,19 @@ func TestTopTagsByQuestionForUser(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(tags) != 3 {
+	if len(tags.Items) != 3 {
 		t.Error("Number of items wrong.")
 	}
 
-	if tags[0].Tag_name != "sql-server" {
+	if tags.Items[0].Tag_name != "sql-server" {
 		t.Error("Name invalid.")
 	}
 
-	if tags[0].Question_score != 369 {
+	if tags.Items[0].Question_score != 369 {
 		t.Error("Question score invalid.")
 	}
 
-	if tags[0].Question_count != 4 {
+	if tags.Items[0].Question_count != 4 {
 		t.Error("Question count invalid.")
 	}
 

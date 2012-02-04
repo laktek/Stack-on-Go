@@ -1,128 +1,151 @@
 package stackongo
 
-//All collection types are private
-
-type accessTokensCollection struct {
+type AccessTokens struct {
 	Items []AccessToken
 	Error
+	MetaInfo
 }
 
-type answersCollection struct {
+type Answers struct {
 	Items []Answer
 	Error
+	MetaInfo
 }
 
-type badgesCollection struct {
+type Badges struct {
 	Items []Badge
 	Error
+	MetaInfo
 }
 
-type commentsCollection struct {
+type Comments struct {
 	Items []Comment
 	Error
+	MetaInfo
 }
 
-type errorsCollection struct {
+type Errors struct {
 	Items []Error
 	Error
+	MetaInfo
 }
 
-type eventsCollection struct {
+type Events struct {
 	Items []Event
 	Error
+	MetaInfo
 }
 
 type infoCollection struct {
 	Items []Info
 	Error
+	MetaInfo
 }
 
-type inboxItemsCollection struct {
+type InboxItems struct {
 	Items []InboxItem
 	Error
+	MetaInfo
 }
 
-type filtersCollection struct {
-  Items []Filter
-  Error
+type Filters struct {
+	Items []Filter
+	Error
+	MetaInfo
 }
 
-type networkUsersCollection struct {
+type NetworkUsers struct {
 	Items []NetworkUser
 	Error
+	MetaInfo
 }
 
-type postsCollection struct {
+type Posts struct {
 	Items []Post
 	Error
+	MetaInfo
 }
 
-type privilegesCollection struct {
+type Privileges struct {
 	Items []Privilege
 	Error
+	MetaInfo
 }
 
-type questionsCollection struct {
+type Questions struct {
 	Items []Question
 	Error
+	MetaInfo
 }
 
-type questionTimelinesCollection struct {
+type QuestionTimelines struct {
 	Items []QuestionTimeline
 	Error
+	MetaInfo
 }
 
-type reputationsCollection struct {
+type Reputations struct {
 	Items []Reputation
 	Error
+	MetaInfo
 }
 
-type revisionsCollection struct {
+type Revisions struct {
 	Items []Revision
 	Error
+	MetaInfo
 }
 
-type sitesCollection struct {
+type Sites struct {
 	Items []Site
 	Error
+	MetaInfo
 }
 
-type suggestedEditsCollection struct {
+type SuggestedEdits struct {
 	Items []SuggestedEdit
 	Error
+	MetaInfo
 }
 
-type tagsCollection struct {
+type Tags struct {
 	Items []Tag
 	Error
+	MetaInfo
 }
 
-type tagScoresCollection struct {
+type TagScores struct {
 	Items []TagScore
 	Error
+	MetaInfo
 }
 
-type tagSynonymsCollection struct {
+type TagSynonyms struct {
 	Items []TagSynonym
 	Error
+	MetaInfo
 }
 
-type tagWikisCollection struct {
+type TagWikis struct {
 	Items []TagWiki
 	Error
+	MetaInfo
 }
 
-type topTagsCollection struct {
+type TopTags struct {
 	Items []TopTag
 	Error
+	MetaInfo
 }
 
-type usersCollection struct {
+type Users struct {
 	Items []User
 	Error
+	MetaInfo
 }
 
-type userTimelinesCollection struct {
+type UserTimelines struct {
 	Items []UserTimeline
 	Error
+	MetaInfo
 }

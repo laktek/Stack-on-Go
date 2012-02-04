@@ -18,27 +18,27 @@ func TestAllUsers(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(users) != 1 {
+	if len(users.Items) != 1 {
 		t.Error("Number of items wrong.")
 	}
 
-	if users[0].User_id != 22656 {
+	if users.Items[0].User_id != 22656 {
 		t.Error("ID invalid.")
 	}
 
-	if users[0].User_type != "registered" {
+	if users.Items[0].User_type != "registered" {
 		t.Error("User type invalid.")
 	}
 
-	if users[0].Creation_date != 1222430705 {
+	if users.Items[0].Creation_date != 1222430705 {
 		t.Error("Date invalid.")
 	}
 
-	if users[0].Is_employee != false {
+	if users.Items[0].Is_employee != false {
 		t.Error("Boolean doesn't match.")
 	}
 
-	if users[0].Badge_counts.Gold != 105 {
+	if users.Items[0].Badge_counts.Gold != 105 {
 		t.Error("Badge count is invalid.")
 	}
 

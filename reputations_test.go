@@ -18,19 +18,19 @@ func TestReputationChangesForUsers(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(reputations) != 3 {
+	if len(reputations.Items) != 3 {
 		t.Error("Number of items wrong.")
 	}
 
-	if reputations[0].User_id != 1 {
+	if reputations.Items[0].User_id != 1 {
 		t.Error("User ID is invalid.")
 	}
 
-	if reputations[0].Post_type != "answer" {
+	if reputations.Items[0].Post_type != "answer" {
 		t.Error("Post type is invalid.")
 	}
 
-	if reputations[0].On_date != 1326828986 {
+	if reputations.Items[0].On_date != 1326828986 {
 		t.Error("On date is invalid.")
 	}
 

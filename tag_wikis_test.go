@@ -18,15 +18,15 @@ func TestWikisForTags(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(tag_wikis) != 1 {
+	if len(tag_wikis.Items) != 1 {
 		t.Error("Number of items wrong.")
 	}
 
-	if tag_wikis[0].Tag_name != "go" {
+	if tag_wikis.Items[0].Tag_name != "go" {
 		t.Error("Tag name invalid.")
 	}
 
-	if tag_wikis[0].Body_last_edit_date != 1322081597 {
+	if tag_wikis.Items[0].Body_last_edit_date != 1322081597 {
 		t.Error("last edit date invalid.")
 	}
 

@@ -1,10 +1,10 @@
 package stackongo
 
 type AccessToken struct {
-Access_token	string
-Expires_on_date int64	
-Account_id	int
-Scope	[]string
+	Access_token    string
+	Expires_on_date int64
+	Account_id      int
+	Scope           []string
 }
 
 type Answer struct {
@@ -117,6 +117,18 @@ type NetworkUser struct {
 	Last_access_date int64
 	Answer_count     int
 	Question_count   int
+}
+
+type MetaInfo struct {
+Backoff int 
+Has_more bool
+Page int
+Page_size int 
+Quota_max int 
+Quota_remaining int 
+Total int
+Type string
+  
 }
 
 type Migration_info struct {

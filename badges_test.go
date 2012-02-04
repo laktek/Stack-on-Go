@@ -18,19 +18,19 @@ func TestAllBadges(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(badges) != 3 {
+	if len(badges.Items) != 3 {
 		t.Error("Number of items wrong.")
 	}
 
-	if badges[0].Badge_id != 455 {
+	if badges.Items[0].Badge_id != 455 {
 		t.Error("ID invalid.")
 	}
 
-	if badges[0].Rank != "bronze" {
+	if badges.Items[0].Rank != "bronze" {
 		t.Error("Rank invalid.")
 	}
 
-	if badges[0].Badge_type != "tag_based" {
+	if badges.Items[0].Badge_type != "tag_based" {
 		t.Error("Badge type invalid.")
 	}
 
@@ -86,7 +86,7 @@ func TestRecentAllBadgeRecipients(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if badges[0].User.Display_name != "Joel Martinez" {
+	if badges.Items[0].User.Display_name != "Joel Martinez" {
 		t.Error("User invalid.")
 	}
 
@@ -103,7 +103,7 @@ func TestRecentBadgeRecipients(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if badges[0].User.Display_name != "Joel Martinez" {
+	if badges.Items[0].User.Display_name != "Joel Martinez" {
 		t.Error("User invalid.")
 	}
 
@@ -120,7 +120,7 @@ func TestBadgeOfUsers(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if badges[0].User.Display_name != "Joel Martinez" {
+	if badges.Items[0].User.Display_name != "Joel Martinez" {
 		t.Error("User invalid.")
 	}
 

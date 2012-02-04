@@ -6,7 +6,7 @@ import (
 	"fmt"
 )
 
-func (session Session) getAnswers(path string, params map[string]string) (output []Answer, error os.Error) {
+func (session Session) getAnswers(path string, params map[string]string) (output *Answers, error os.Error) {
 	// make the request
 	response, err := session.get(path, params)
 
@@ -14,27 +14,25 @@ func (session Session) getAnswers(path string, params map[string]string) (output
 		return output, err
 	}
 
-	parsed_response, error := parseResponse(response, new(answersCollection))
-	collection := parsed_response.(*answersCollection)
+	parsed_response, error := parseResponse(response, new(Answers))
+	output = parsed_response.(*Answers)
 
 	if error != nil {
 		//overload the generic error with details
-		error = os.NewError(collection.Error_name + ": " + collection.Error_message)
-	} else {
-		output = collection.Items
+		error = os.NewError(output.Error_name + ": " + output.Error_message)
 	}
 
-	return output, error
+	return
 
 }
 
 // AllAnswers returns all answers in site 
-func (session Session) AllAnswers(params map[string]string) (output []Answer, error os.Error) {
+func (session Session) AllAnswers(params map[string]string) (output *Answers, error os.Error) {
 	return session.getAnswers("answers", params)
 }
 
 // Answers returns the answers with the given ids
-func (session Session) Answers(ids []int, params map[string]string) (output []Answer, error os.Error) {
+func (session Session) Answers(ids []int, params map[string]string) (output *Answers, error os.Error) {
 	string_ids := []string{}
 	for _, v := range ids {
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))
@@ -44,7 +42,7 @@ func (session Session) Answers(ids []int, params map[string]string) (output []An
 }
 
 // AnswersForQuestions returns the answers for the questions identified with given ids
-func (session Session) AnswersForQuestions(ids []int, params map[string]string) (output []Answer, error os.Error) {
+func (session Session) AnswersForQuestions(ids []int, params map[string]string) (output *Answers, error os.Error) {
 	string_ids := []string{}
 	for _, v := range ids {
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))
@@ -54,7 +52,7 @@ func (session Session) AnswersForQuestions(ids []int, params map[string]string) 
 }
 
 // AnswersFromUsers returns the answers from the users identified with given ids
-func (session Session) AnswersFromUsers(ids []int, params map[string]string) (output []Answer, error os.Error) {
+func (session Session) AnswersFromUsers(ids []int, params map[string]string) (output *Answers, error os.Error) {
 	string_ids := []string{}
 	for _, v := range ids {
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))
@@ -64,7 +62,7 @@ func (session Session) AnswersFromUsers(ids []int, params map[string]string) (ou
 }
 
 // TopAnswersFromUsers returns the top answers from the users identified with given ids for the questions with given tags
-func (session Session) TopAnswersFromUsers(ids []int, tags []string, params map[string]string) (output []Answer, error os.Error) {
+func (session Session) TopAnswersFromUsers(ids []int, tags []string, params map[string]string) (output *Answers, error os.Error) {
 
 	string_ids := []string{}
 	for _, v := range ids {

@@ -8,7 +8,7 @@ import (
 )
 
 // AssociatedAccounts returns all associated accounts for the given user ids.
-func AssociatedAccounts(ids []int, params map[string]string) (output []NetworkUser, error os.Error) {
+func AssociatedAccounts(ids []int, params map[string]string) (output *NetworkUsers, error os.Error) {
 
 	string_ids := []string{}
 	for _, v := range ids {
@@ -24,16 +24,14 @@ func AssociatedAccounts(ids []int, params map[string]string) (output []NetworkUs
 		return output, err
 	}
 
-	parsed_response, error := parseResponse(response, new(networkUsersCollection))
-	collection := parsed_response.(*networkUsersCollection)
+	parsed_response, error := parseResponse(response, new(NetworkUsers))
+	output = parsed_response.(*NetworkUsers)
 
 	if error != nil {
 		//overload the generic error with details
-		error = os.NewError(collection.Error_name + ": " + collection.Error_message)
-	} else {
-		output = collection.Items
+		error = os.NewError(output.Error_name + ": " + output.Error_message)
 	}
 
-	return output, error
+	return
 
 }

@@ -2,11 +2,11 @@ package stackongo
 
 import (
 	"os"
-  "strings"
+	"strings"
 	"fmt"
 )
 
-func (session Session) getRevisions(path string, params map[string]string) (output []Revision, error os.Error) {
+func (session Session) getRevisions(path string, params map[string]string) (output *Revisions, error os.Error) {
 	// make the request
 	response, err := session.get(path, params)
 
@@ -14,22 +14,20 @@ func (session Session) getRevisions(path string, params map[string]string) (outp
 		return output, err
 	}
 
-	parsed_response, error := parseResponse(response, new(revisionsCollection))
-	collection := parsed_response.(*revisionsCollection)
+	parsed_response, error := parseResponse(response, new(Revisions))
+	output = parsed_response.(*Revisions)
 
 	if error != nil {
 		//overload the generic error with details
-		error = os.NewError(collection.Error_name + ": " + collection.Error_message)
-	} else {
-		output = collection.Items
+		error = os.NewError(output.Error_name + ": " + output.Error_message)
 	}
 
-	return output, error
+	return
 
 }
 
 // Revisions returns edit revisions identified by given ids
-func (session Session) Revisions(ids []int, params map[string]string) (output []Revision, error os.Error) {
+func (session Session) Revisions(ids []int, params map[string]string) (output *Revisions, error os.Error) {
 	string_ids := []string{}
 	for _, v := range ids {
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))
@@ -39,7 +37,7 @@ func (session Session) Revisions(ids []int, params map[string]string) (output []
 }
 
 // RevisionsForPosts returns the revisions for the posts identified with given ids
-func (session Session) RevisionsForPosts(ids []int, params map[string]string) (output []Revision, error os.Error) {
+func (session Session) RevisionsForPosts(ids []int, params map[string]string) (output *Revisions, error os.Error) {
 	string_ids := []string{}
 	for _, v := range ids {
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))

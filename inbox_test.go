@@ -17,27 +17,27 @@ func TestInbox(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(inbox_items) != 1 {
+	if len(inbox_items.Items) != 1 {
 		t.Error("Number of items wrong.")
 	}
 
-	if inbox_items[0].Item_type != "new_answer" {
+	if inbox_items.Items[0].Item_type != "new_answer" {
 		t.Error("Type invalid.")
 	}
 
-	if inbox_items[0].Question_id != 1202 {
+	if inbox_items.Items[0].Question_id != 1202 {
 		t.Error("Question id invalid.")
 	}
 
-	if inbox_items[0].Title != "Sample question" {
+	if inbox_items.Items[0].Title != "Sample question" {
 		t.Error("Title invalid.")
 	}
 
-	if inbox_items[0].Creation_date != 1328148124 {
+	if inbox_items.Items[0].Creation_date != 1328148124 {
 		t.Error("Creation date invalid.")
 	}
 
-	if inbox_items[0].Site.Name != "Stack Apps" {
+	if inbox_items.Items[0].Site.Name != "Stack Apps" {
 		t.Error("Creation date invalid.")
 	}
 

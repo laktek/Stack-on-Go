@@ -17,15 +17,15 @@ func TestCreateFilter(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if filters[0].Filter != "default" {
+	if filters.Items[0].Filter != "default" {
 		t.Error("Filter invalid.")
 	}
 
-	if filters[0].Included_fields[0] != ".backoff" {
+	if filters.Items[0].Included_fields[0] != ".backoff" {
 		t.Error("Included fields are invalid.")
 	}
 
-	if filters[0].Filter_type != "safe" {
+	if filters.Items[0].Filter_type != "safe" {
 		t.Error("Filter type invalid.")
 	}
 

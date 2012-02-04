@@ -18,23 +18,23 @@ func TestTimelineForUsers(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(user_timelines) != 3 {
+	if len(user_timelines.Items) != 3 {
 		t.Error("Number of items wrong.")
 	}
 
-	if user_timelines[0].User_id != 22656 {
+	if user_timelines.Items[0].User_id != 22656 {
 		t.Error("ID invalid.")
 	}
 
-	if user_timelines[0].Post_type != "answer" {
+	if user_timelines.Items[0].Post_type != "answer" {
 		t.Error("Post type invalid.")
 	}
 
-	if user_timelines[0].Creation_date != 1328047513 {
+	if user_timelines.Items[0].Creation_date != 1328047513 {
 		t.Error("Date invalid.")
 	}
 
-	if user_timelines[0].Title != "Thread concurrency issue even within one single command?" {
+	if user_timelines.Items[0].Title != "Thread concurrency issue even within one single command?" {
 		t.Error("Title invalid.")
 	}
 

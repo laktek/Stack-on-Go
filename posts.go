@@ -6,7 +6,7 @@ import (
 	"fmt"
 )
 
-func (session Session) getPosts(path string, params map[string]string) (output []Post, error os.Error) {
+func (session Session) getPosts(path string, params map[string]string) (output *Posts, error os.Error) {
 	// make the request
 	response, err := session.get(path, params)
 
@@ -14,27 +14,25 @@ func (session Session) getPosts(path string, params map[string]string) (output [
 		return output, err
 	}
 
-	parsed_response, error := parseResponse(response, new(postsCollection))
-	collection := parsed_response.(*postsCollection)
+	parsed_response, error := parseResponse(response, new(Posts))
+	output = parsed_response.(*Posts)
 
 	if error != nil {
 		//overload the generic error with details
-		error = os.NewError(collection.Error_name + ": " + collection.Error_message)
-	} else {
-		output = collection.Items
+		error = os.NewError(output.Error_name + ": " + output.Error_message)
 	}
 
-	return output, error
+	return
 
 }
 
 // AllPosts returns all Posts in site 
-func (session Session) AllPosts(params map[string]string) (output []Post, error os.Error) {
+func (session Session) AllPosts(params map[string]string) (output *Posts, error os.Error) {
 	return session.getPosts("posts", params)
 }
 
 // Posts returns the posts with the given ids
-func (session Session) Posts(ids []int, params map[string]string) (output []Post, error os.Error) {
+func (session Session) Posts(ids []int, params map[string]string) (output *Posts, error os.Error) {
 	string_ids := []string{}
 	for _, v := range ids {
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))

@@ -17,15 +17,15 @@ func TestAllErrors(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(errors) != 3 {
+	if len(errors.Items) != 3 {
 		t.Error("Number of items wrong.")
 	}
 
-	if errors[0].Error_id != 400 {
+	if errors.Items[0].Error_id != 400 {
 		t.Error("Error id invalid.")
 	}
 
-	if errors[0].Error_name != "bad_parameter" {
+	if errors.Items[0].Error_name != "bad_parameter" {
 		t.Error("error name invalid.")
 	}
 

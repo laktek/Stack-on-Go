@@ -4,32 +4,32 @@ import (
 	"testing"
 )
 
-func TestSites(t *testing.T) {
+func TestAllSites(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/sites", dummySitesResponse, t)
 	defer dummy_server.Close()
 
 	//change the host to use the test server
 	setHost(dummy_server.URL)
 
-	sites, err := Sites(map[string]string{"page": "1"})
+	sites, err := AllSites(map[string]string{"page": "1"})
 
 	if err != nil {
 		t.Error(err.String())
 	}
 
-	if len(sites) != 3 {
+	if len(sites.Items) != 3 {
 		t.Error("Number of items wrong.")
 	}
 
-	if sites[0].Site_type != "main_site" {
+	if sites.Items[0].Site_type != "main_site" {
 		t.Error("Site type invalid.")
 	}
 
-	if sites[0].Aliases[0] != "http://www.stackoverflow.com" {
+	if sites.Items[0].Aliases[0] != "http://www.stackoverflow.com" {
 		t.Error("alias invalid.")
 	}
 
-	if sites[0].Related_sites[0].Name != "Stack Overflow Chat" {
+	if sites.Items[0].Related_sites[0].Name != "Stack Overflow Chat" {
 		t.Error("related site invalid.")
 	}
 

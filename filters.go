@@ -3,11 +3,11 @@ package stackongo
 import (
 	"os"
 	"http"
-  "strings"
+	"strings"
 )
 
 // CreateFilter creates a new filter given a list of includes, excludes, a base filter, and whether or not this filter should be "unsafe". 
-func CreateFilter(params map[string]string) (output []Filter, error os.Error) {
+func CreateFilter(params map[string]string) (output *Filters, error os.Error) {
 	client := new(http.Client)
 
 	// make the request
@@ -17,21 +17,19 @@ func CreateFilter(params map[string]string) (output []Filter, error os.Error) {
 		return output, err
 	}
 
-	parsed_response, error := parseResponse(response, new(filtersCollection))
-	collection := parsed_response.(*filtersCollection)
+	parsed_response, error := parseResponse(response, new(Filters))
+	output = parsed_response.(*Filters)
 
 	if error != nil {
 		//overload the generic error with details
-		error = os.NewError(collection.Error_name + ": " + collection.Error_message)
-	} else {
-		output = collection.Items
+		error = os.NewError(output.Error_name + ": " + output.Error_message)
 	}
 
-	return output, error
+	return
 }
 
 // InspectFilters returns the fields included by the given filters, and the "safeness" of those filters.
-func InspectFilters(filters []string, params map[string]string) (output []Filter, error os.Error) {
+func InspectFilters(filters []string, params map[string]string) (output *Filters, error os.Error) {
 
 	request_path := strings.Join([]string{"filters", strings.Join(filters, ";")}, "/")
 
@@ -43,16 +41,14 @@ func InspectFilters(filters []string, params map[string]string) (output []Filter
 		return output, err
 	}
 
-	parsed_response, error := parseResponse(response, new(filtersCollection))
-	collection := parsed_response.(*filtersCollection)
+	parsed_response, error := parseResponse(response, new(Filters))
+	output = parsed_response.(*Filters)
 
 	if error != nil {
 		//overload the generic error with details
-		error = os.NewError(collection.Error_name + ": " + collection.Error_message)
-	} else {
-		output = collection.Items
+		error = os.NewError(output.Error_name + ": " + output.Error_message)
 	}
 
-	return output, error
+	return
 
 }

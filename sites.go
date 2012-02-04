@@ -5,8 +5,8 @@ import (
 	"http"
 )
 
-// Sites returns all sites available in StackExchange network
-func Sites(params map[string]string) (output []Site, error os.Error) {
+// AllSites returns all sites available in StackExchange network
+func AllSites(params map[string]string) (output *Sites, error os.Error) {
 	client := new(http.Client)
 
 	// make the request
@@ -16,16 +16,14 @@ func Sites(params map[string]string) (output []Site, error os.Error) {
 		return output, err
 	}
 
-	parsed_response, error := parseResponse(response, new(sitesCollection))
-	collection := parsed_response.(*sitesCollection)
+	parsed_response, error := parseResponse(response, new(Sites))
+	output = parsed_response.(*Sites)
 
 	if error != nil {
 		//overload the generic error with details
-		error = os.NewError(collection.Error_name + ": " + collection.Error_message)
-	} else {
-		output = collection.Items
+		error = os.NewError(output.Error_name + ": " + output.Error_message)
 	}
 
-	return output, error
+	return
 
 }

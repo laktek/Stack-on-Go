@@ -18,19 +18,19 @@ func TestTopAnswerers(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(tag_scores) != 3 {
+	if len(tag_scores.Items) != 3 {
 		t.Error("Number of items wrong.")
 	}
 
-	if tag_scores[0].Score != 45 {
+	if tag_scores.Items[0].Score != 45 {
 		t.Error("Score invalid.")
 	}
 
-	if tag_scores[0].Post_count != 1 {
+	if tag_scores.Items[0].Post_count != 1 {
 		t.Error("Post count invalid.")
 	}
 
-	if tag_scores[0].User.Display_name != "user208987" {
+	if tag_scores.Items[0].User.Display_name != "user208987" {
 		t.Error("User invalid.")
 	}
 

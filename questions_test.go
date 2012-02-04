@@ -19,23 +19,23 @@ func TestAllQuestions(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(questions) != 3 {
+	if len(questions.Items) != 3 {
 		t.Error("Number of items wrong.")
 	}
 
-	if questions[0].Title != "GetAvailableWebTemplates returns nothing" {
+	if questions.Items[0].Title != "GetAvailableWebTemplates returns nothing" {
 		t.Error("Title invalid.")
 	}
 
-	if strings.Join(questions[0].Tags, ", ") != "sharepoint, templates" {
+	if strings.Join(questions.Items[0].Tags, ", ") != "sharepoint, templates" {
 		t.Error("Tags invalid.")
 	}
 
-	if questions[0].Owner.Display_name != "Nacht" {
+	if questions.Items[0].Owner.Display_name != "Nacht" {
 		t.Error("Owner invalid.")
 	}
 
-	if questions[0].Creation_date != 1327453582 {
+	if questions.Items[0].Creation_date != 1327453582 {
 		t.Error("Date invalid.")
 	}
 

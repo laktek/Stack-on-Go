@@ -17,23 +17,23 @@ func TestInspectAccessTokens(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(access_tokens) != 3 {
+	if len(access_tokens.Items) != 3 {
 		t.Error("Number of items wrong.")
 	}
 
-	if access_tokens[0].Access_token != "abc" {
+	if access_tokens.Items[0].Access_token != "abc" {
 		t.Error("Access token invalid.")
 	}
 
-	if access_tokens[0].Expires_on_date != 1328148124 {
+	if access_tokens.Items[0].Expires_on_date != 1328148124 {
 		t.Error("Expires date invalid.")
 	}
 
-	if access_tokens[0].Account_id != 1001 {
+	if access_tokens.Items[0].Account_id != 1001 {
 		t.Error("Account id invalid.")
 	}
 
-	if access_tokens[0].Scope[0] != "read_inbox" {
+	if access_tokens.Items[0].Scope[0] != "read_inbox" {
 		t.Error("Scope invalid.")
 	}
 

@@ -18,19 +18,19 @@ func TestTimelineForQuestions(t *testing.T) {
 		t.Error(err.String())
 	}
 
-	if len(question_timelines) != 3 {
+	if len(question_timelines.Items) != 3 {
 		t.Error("Number of items wrong.")
 	}
 
-	if question_timelines[0].Timeline_type != "comment" {
+	if question_timelines.Items[0].Timeline_type != "comment" {
 		t.Error("Timeline type invalid.")
 	}
 
-	if question_timelines[0].Creation_date != 1328052381 {
+	if question_timelines.Items[0].Creation_date != 1328052381 {
 		t.Error("Date invalid.")
 	}
 
-	if question_timelines[0].User.Display_name != "eouw0o83hf" {
+	if question_timelines.Items[0].User.Display_name != "eouw0o83hf" {
 		t.Error("User invalid.")
 	}
 

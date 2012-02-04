@@ -7,7 +7,7 @@ import (
 )
 
 // AllErrors returns the various error codes that can be produced by the API. 
-func AllErrors(params map[string]string) (output []Error, error os.Error) {
+func AllErrors(params map[string]string) (output *Errors, error os.Error) {
 	client := new(http.Client)
 
 	// make the request
@@ -17,17 +17,15 @@ func AllErrors(params map[string]string) (output []Error, error os.Error) {
 		return output, err
 	}
 
-	parsed_response, error := parseResponse(response, new(errorsCollection))
-	collection := parsed_response.(*errorsCollection)
+	parsed_response, error := parseResponse(response, new(Errors))
+	output = parsed_response.(*Errors)
 
 	if error != nil {
 		//overload the generic error with details
-		error = os.NewError(collection.Error_name + ": " + collection.Error_message)
-	} else {
-		output = collection.Items
+		error = os.NewError(output.Error_name + ": " + output.Error_message)
 	}
 
-	return output, error
+	return
 }
 
 // SimulateError allows you to simulate an error response
