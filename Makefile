@@ -1,6 +1,6 @@
 include $(GOROOT)/src/Make.inc
 
-TARG=stackongo
+TARG=github.com/laktek/stack-on-go
 GOFILES=\
 	session.go\
 	access_tokens.go\
