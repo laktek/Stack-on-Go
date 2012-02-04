@@ -13,13 +13,14 @@ func main() {
 
 	session := stackongo.NewSession("stackoverflow")
 
+	//set the common params
+	params := make(stackongo.Params)
+	params.Add("filter", "total")
+	params.Add("fromdate", from_date)
+
 	for _, tag := range tags {
-		results, err := session.AllQuestions(map[string]string{"tagged": tag, "filter": "total", "fromdate": fmt.Sprintf("%v", from_date)})
-		//params_list := make(Params)
-		//params_list.Add("tagged", tag)
-		//params_list.Add("filter", "total")
-		//params_list.Add("fromdate", "total")
-		//results, err := session.AllQuestions(params_list)
+		params.Add("tagged", tag)
+		results, err := session.AllQuestions(params)
 
 		if err != nil {
 			fmt.Printf(err.String())
