@@ -39,6 +39,8 @@ func setupEndpoint(path string, params map[string]string) *url.URL {
 
 // parse the response
 func parseResponse(response *http.Response, result interface{}) (interface{}, os.Error) {
+	// close the body when done reading
+	defer response.Body.Close()
 
 	//read the response
 	bytes, err := ioutil.ReadAll(response.Body)

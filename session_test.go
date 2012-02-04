@@ -32,9 +32,26 @@ func returnDummyResponseForPathAndParams(path string, params map[string]string, 
 
 		for key, value := range params {
 			if r.URL.Query().Get(key) != value {
-				t.Error("Expected " + key + " to equal " + value + ". Got " + r.URL.Query().Get(key) )
+				t.Error("Expected " + key + " to equal " + value + ". Got " + r.URL.Query().Get(key))
 			}
 		}
+		w.Write(dummy_data)
+	}))
+
+	//change the host to use the test server
+	setHost(dummy_server.URL)
+
+	return dummy_server
+}
+
+func returnDummyErrorResponseForPath(path string, dummy_response string, t *testing.T) *httptest.Server {
+	//serve dummy responses
+	dummy_data := []byte(dummy_response)
+	dummy_server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path != path {
+			t.Error("Path doesn't match")
+		}
+    w.WriteHeader(400)
 		w.Write(dummy_data)
 	}))
 

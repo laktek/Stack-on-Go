@@ -5,6 +5,7 @@ GOFILES=\
 	session.go\
 	access_tokens.go\
 	answers.go\
+	auth.go\
 	badges.go\
 	comments.go\
 	collections.go\
