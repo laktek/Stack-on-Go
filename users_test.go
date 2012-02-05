@@ -62,13 +62,13 @@ func TestAuthenticatedUser(t *testing.T) {
 	defer dummy_server.Close()
 
 	session := NewSession("stackoverflow")
-	user, err := session.AuthenticatedUser(map[string]string{"sort": "votes", "order": "desc", "page": "1"}, map[string]string{"key": "app123", "access_token": "abc"})
+	user, err := session.AuthenticatedUser(map[string]string{}, map[string]string{"key": "app123", "access_token": "abc"})
 
 	if err != nil {
 		t.Error(err.String())
 	}
 
-  if user.User_id != 22656 {
+	if user.User_id != 22656 {
 		t.Error("ID invalid.")
 	}
 
@@ -88,6 +88,21 @@ func TestAuthenticatedUser(t *testing.T) {
 		t.Error("Badge count is invalid.")
 	}
 
+}
+
+func TestNoAuthenticatedUser(t *testing.T) {
+	dummy_server := returnDummyResponseForPathAndParams("/2.0/me", map[string]string{"key": "app123", "access_token": "abc"}, dummyMetaInfoResponse, t)
+	defer dummy_server.Close()
+
+	//change the host to use the test server
+	setHost(dummy_server.URL)
+
+	session := NewSession("stackoverflow")
+_, err := session.AuthenticatedUser(map[string]string{}, map[string]string{"key": "app123", "access_token": "abc"})
+
+	if err.String() != "User not found" {
+		t.Error("Error didn't match")
+	}
 }
 
 func TestModerators(t *testing.T) {

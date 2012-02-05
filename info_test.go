@@ -32,6 +32,21 @@ func TestInfo(t *testing.T) {
 
 }
 
+func TestNoInfo(t *testing.T) {
+	dummy_server := returnDummyResponseForPath("/2.0/info", dummyMetaInfoResponse, t)
+	defer dummy_server.Close()
+
+	//change the host to use the test server
+	setHost(dummy_server.URL)
+
+	session := NewSession("stackoverflow")
+	_, err := session.Info()
+
+	if err.String() != "Site not found" {
+		t.Error("Error didn't match")
+	}
+}
+
 //Test Data
 
 var dummyInfoResponse string = `

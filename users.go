@@ -35,7 +35,14 @@ func (session Session) AuthenticatedUser(params map[string]string, auth map[stri
 
 	collection := new(Users)
 	error = session.get("me", params, collection)
-	return collection.Items[0], error
+
+	if len(collection.Items) > 0 {
+		output = collection.Items[0]
+	} else {
+		error = os.NewError("User not found")
+	}
+
+	return
 
 }
 

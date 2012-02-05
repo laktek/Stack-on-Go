@@ -9,7 +9,7 @@ So if you're a Stack Overflow enthusiast who'd love to learn Go, this is a good 
 
 ### Installation
 
-Installation of *Stack on Go* is simple. Of course you will need to have Go installed on your machine. *Stack on Go* is targeted for the current Go stable release r.60.3.
+As a prerequiste, you will need to have Go installed on your machine. *Stack on Go* is targeted for the current Go stable release r.60.3.
 
 To install the package using `goinstall` run:
 

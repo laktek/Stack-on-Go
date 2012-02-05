@@ -8,5 +8,12 @@ import (
 func (session Session) Info() (output Info, error os.Error) {
   collection := new(infoCollection)
 	error = session.get("info", map[string]string{}, collection)
-	return collection.Items[0], error
+
+  if len(collection.Items) > 0 {
+		output = collection.Items[0]
+	} else {
+		error = os.NewError("Site not found")
+	}
+
+	return
 }
