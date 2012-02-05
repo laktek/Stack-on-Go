@@ -97,9 +97,9 @@ func TestRequestError(t *testing.T) {
 	setHost(dummy_server.URL)
 
 	session := NewSession("stackoverflow")
-	_, err := session.AllQuestions(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
+	result, err := session.AllQuestions(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
-  if err.String() != "no_method: simulated" {
+	if err != nil && result.Error_name != "no_method" && result.Error_message != "simulated" {
 		t.Error("Y U GAVE NO ERROR?")
 	}
 

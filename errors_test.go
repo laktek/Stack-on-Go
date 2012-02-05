@@ -38,10 +38,18 @@ func TestSimulateError(t *testing.T) {
 	//change the host to use the test server
 	setHost(dummy_server.URL)
 
-	err := SimulateError(404)
+	error, err := SimulateError(404)
 
-	if err.String() != "no_method: simulated" {
-		t.Error("error name invalid.")
+	if err != nil {
+		t.Error(err.String())
+	}
+
+	if error.Error_name != "no_method" {
+		t.Error("Error name invalid.")
+	}
+
+	if error.Error_message != "simulated" {
+		t.Error("Error message invalid.")
 	}
 
 }

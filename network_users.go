@@ -2,7 +2,6 @@ package stackongo
 
 import (
 	"os"
-	"http"
 	"fmt"
 	"strings"
 )
@@ -16,22 +15,8 @@ func AssociatedAccounts(ids []int, params map[string]string) (output *NetworkUse
 	}
 	request_path := strings.Join([]string{"users", strings.Join(string_ids, ";"), "associated"}, "/")
 
-	// make the request
-	client := new(http.Client)
-	response, err := client.Get(setupEndpoint(request_path, params).String())
-
-	if err != nil {
-		return output, err
-	}
-
-	parsed_response, error := parseResponse(response, new(NetworkUsers))
-	output = parsed_response.(*NetworkUsers)
-
-	if error != nil {
-		//overload the generic error with details
-		error = os.NewError(output.Error_name + ": " + output.Error_message)
-	}
-
+	output = new(NetworkUsers)
+	error = get(request_path, params, output)
 	return
 
 }

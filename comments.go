@@ -6,29 +6,11 @@ import (
 	"fmt"
 )
 
-func (session Session) getComments(path string, params map[string]string) (output *Comments, error os.Error) {
-	// make the request
-	response, err := session.get(path, params)
-
-	if err != nil {
-		return output, err
-	}
-
-	parsed_response, error := parseResponse(response, new(Comments))
-	output = parsed_response.(*Comments)
-
-	if error != nil {
-		//overload the generic error with details
-		error = os.NewError(output.Error_name + ": " + output.Error_message)
-	}
-
-	return
-
-}
-
 // AllComments returns all comments in site 
 func (session Session) AllComments(params map[string]string) (output *Comments, error os.Error) {
-	return session.getComments("comments", params)
+	output = new(Comments)
+	error = session.get("comments", params, output)
+	return
 }
 
 // Comments returns the comments with the given ids
@@ -38,7 +20,10 @@ func (session Session) GetComments(ids []int, params map[string]string) (output 
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))
 	}
 	request_path := strings.Join([]string{"comments", strings.Join(string_ids, ";")}, "/")
-	return session.getComments(request_path, params)
+
+	output = new(Comments)
+	error = session.get(request_path, params, output)
+	return
 }
 
 // CommentsForQuestions returns the comments for the questions identified with given ids
@@ -48,7 +33,10 @@ func (session Session) CommentsForQuestions(ids []int, params map[string]string)
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))
 	}
 	request_path := strings.Join([]string{"questions", strings.Join(string_ids, ";"), "comments"}, "/")
-	return session.getComments(request_path, params)
+
+	output = new(Comments)
+	error = session.get(request_path, params, output)
+	return
 }
 
 // CommentsForAnswers returns the comments for the answers identified with given ids
@@ -58,7 +46,10 @@ func (session Session) CommentsForAnswers(ids []int, params map[string]string) (
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))
 	}
 	request_path := strings.Join([]string{"answers", strings.Join(string_ids, ";"), "comments"}, "/")
-	return session.getComments(request_path, params)
+
+	output = new(Comments)
+	error = session.get(request_path, params, output)
+	return
 }
 
 // CommentsForPosts returns the comments for the posts identified with given ids
@@ -68,7 +59,10 @@ func (session Session) CommentsForPosts(ids []int, params map[string]string) (ou
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))
 	}
 	request_path := strings.Join([]string{"posts", strings.Join(string_ids, ";"), "comments"}, "/")
-	return session.getComments(request_path, params)
+
+	output = new(Comments)
+	error = session.get(request_path, params, output)
+	return
 }
 
 // CommentsFromUsers returns the comments from the users identified with given ids
@@ -78,7 +72,10 @@ func (session Session) CommentsFromUsers(ids []int, params map[string]string) (o
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))
 	}
 	request_path := strings.Join([]string{"users", strings.Join(string_ids, ";"), "comments"}, "/")
-	return session.getComments(request_path, params)
+
+	output = new(Comments)
+	error = session.get(request_path, params, output)
+	return
 }
 
 // CommentsMentionedUsers returns the comments mentioning the users identified with given ids
@@ -88,7 +85,10 @@ func (session Session) CommentsMentionedUsers(ids []int, params map[string]strin
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))
 	}
 	request_path := strings.Join([]string{"users", strings.Join(string_ids, ";"), "mentioned"}, "/")
-	return session.getComments(request_path, params)
+
+	output = new(Comments)
+	error = session.get(request_path, params, output)
+	return
 }
 
 // CommentsFromUsersTo returns the comments to a user from the users identified with given ids
@@ -98,5 +98,8 @@ func (session Session) CommentsFromUsersTo(ids []int, to int, params map[string]
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))
 	}
 	request_path := strings.Join([]string{"users", strings.Join(string_ids, ";"), "comments", fmt.Sprintf("%v", to)}, "/")
-	return session.getComments(request_path, params)
+  
+	output = new(Comments)
+	error = session.get(request_path, params, output)
+	return
 }

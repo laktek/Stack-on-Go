@@ -38,38 +38,60 @@ func setupEndpoint(path string, params map[string]string) *url.URL {
 }
 
 // parse the response
-func parseResponse(response *http.Response, result interface{}) (interface{}, os.Error) {
+func parseResponse(response *http.Response, result interface{}) (error os.Error) {
 	// close the body when done reading
 	defer response.Body.Close()
 
 	//read the response
-	bytes, err := ioutil.ReadAll(response.Body)
+	bytes, error := ioutil.ReadAll(response.Body)
 
-	if err != nil {
-		return result, err
+	if error != nil {
+		return
 	}
 
 	//parse JSON
-	err2 := json.Unmarshal(bytes, result)
+	error = json.Unmarshal(bytes, result)
 
-	if err2 != nil {
-		print(err2.String())
+	if error != nil {
+		print(error.String())
 	}
 
 	//check whether the response is a bad request
 	if response.StatusCode == 400 {
-		err2 = os.NewError("Bad Request")
+		error = os.NewError("Bad Request")
 	}
 
-	return result, err2
+	return
 }
 
 // make the request
-func (session Session) get(section string, params map[string]string) (*http.Response, os.Error) {
+func (session Session) get_old(section string, params map[string]string) (*http.Response, os.Error) {
 	client := new(http.Client)
 
 	//set parameters for querystring
 	params["site"] = session.Site
 
 	return client.Get(setupEndpoint(section, params).String())
+}
+
+func (session Session) get(section string, params map[string]string, collection interface{}) (error os.Error) {
+	//set parameters for querystring
+	params["site"] = session.Site
+
+	return get(section, params, collection)
+}
+
+func get(section string, params map[string]string, collection interface{}) (error os.Error) {
+	client := new(http.Client)
+
+	response, error := client.Get(setupEndpoint(section, params).String())
+
+	if error != nil {
+		return
+	}
+
+	error = parseResponse(response, collection)
+
+	return
+
 }

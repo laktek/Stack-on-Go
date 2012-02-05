@@ -6,29 +6,11 @@ import (
 	"fmt"
 )
 
-func (session Session) getAnswers(path string, params map[string]string) (output *Answers, error os.Error) {
-	// make the request
-	response, err := session.get(path, params)
-
-	if err != nil {
-		return output, err
-	}
-
-	parsed_response, error := parseResponse(response, new(Answers))
-	output = parsed_response.(*Answers)
-
-	if error != nil {
-		//overload the generic error with details
-		error = os.NewError(output.Error_name + ": " + output.Error_message)
-	}
-
-	return
-
-}
-
 // AllAnswers returns all answers in site 
 func (session Session) AllAnswers(params map[string]string) (output *Answers, error os.Error) {
-	return session.getAnswers("answers", params)
+	output = new(Answers)
+	error = session.get("answers", params, output)
+	return
 }
 
 // Answers returns the answers with the given ids
@@ -38,7 +20,10 @@ func (session Session) GetAnswers(ids []int, params map[string]string) (output *
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))
 	}
 	request_path := strings.Join([]string{"answers", strings.Join(string_ids, ";")}, "/")
-	return session.getAnswers(request_path, params)
+
+	output = new(Answers)
+	error = session.get(request_path, params, output)
+	return
 }
 
 // AnswersForQuestions returns the answers for the questions identified with given ids
@@ -48,7 +33,10 @@ func (session Session) AnswersForQuestions(ids []int, params map[string]string) 
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))
 	}
 	request_path := strings.Join([]string{"questions", strings.Join(string_ids, ";"), "answers"}, "/")
-	return session.getAnswers(request_path, params)
+
+	output = new(Answers)
+	error = session.get(request_path, params, output)
+	return
 }
 
 // AnswersFromUsers returns the answers from the users identified with given ids
@@ -58,7 +46,10 @@ func (session Session) AnswersFromUsers(ids []int, params map[string]string) (ou
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))
 	}
 	request_path := strings.Join([]string{"users", strings.Join(string_ids, ";"), "answers"}, "/")
-	return session.getAnswers(request_path, params)
+
+	output = new(Answers)
+	error = session.get(request_path, params, output)
+	return
 }
 
 // TopAnswersFromUsers returns the top answers from the users identified with given ids for the questions with given tags
@@ -70,5 +61,8 @@ func (session Session) TopAnswersFromUsers(ids []int, tags []string, params map[
 	}
 
 	request_path := strings.Join([]string{"users", strings.Join(string_ids, ";"), "tags", strings.Join(tags, ";"), "top-answers"}, "/")
-	return session.getAnswers(request_path, params)
+
+	output = new(Answers)
+	error = session.get(request_path, params, output)
+	return
 }

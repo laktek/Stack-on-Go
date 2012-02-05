@@ -4,7 +4,7 @@ This is a wrapper written in Go(lang) for [Stack Exchange API 2.0](https://api.s
 
 Build awesome analyzing tools based on Stack Exchange API.
 
-Some examples:
+Some ideas:
 
 * Custom notifiers
 * Language & Tools trends
@@ -15,6 +15,8 @@ Deploy your apps on Google AppEngine
 ## Installation
 
 ## Basic Usage
+
+## Examples
 
 ### Notes
 
