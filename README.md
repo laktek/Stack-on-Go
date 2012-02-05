@@ -17,7 +17,7 @@ To install the package using `goinstall` run:
  goinstall github.com/laktek/Stack-on-Go 
  ```
 
-Or you can clone this repo and run:
+Or you can [clone](https://github.com/laktek/Stack-on-Go) this repo and run:
   
   ```bash
   cd Stack-on-Go
