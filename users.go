@@ -36,6 +36,11 @@ func (session Session) AuthenticatedUser(params map[string]string, auth map[stri
 	collection := new(Users)
 	error = session.get("me", params, collection)
 
+	if error != nil {
+    error = os.NewError(collection.Error_name + ": " + collection.Error_message)
+		return
+	}
+
 	if len(collection.Items) > 0 {
 		output = collection.Items[0]
 	} else {
