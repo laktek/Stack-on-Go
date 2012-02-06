@@ -6,10 +6,7 @@ import (
 
 func TestTopTagsByAnswerForUser(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/1/top-answer-tags", dummyTopTagsResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	tags, err := session.TopTagsByAnswerForUser(1, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
@@ -38,10 +35,7 @@ func TestTopTagsByAnswerForUser(t *testing.T) {
 
 func TestTopTagsByQuestionForUser(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/1/top-question-tags", dummyTopTagsResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	tags, err := session.TopTagsByQuestionForUser(1, map[string]string{"sort": "votes", "order": "desc", "page": "1"})

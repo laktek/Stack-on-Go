@@ -6,10 +6,7 @@ import (
 
 func TestCreateFilter(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/filters/create", dummyFiltersResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	filters, err := CreateFilter(map[string]string{"unsafe": "false"})
 
@@ -33,10 +30,7 @@ func TestCreateFilter(t *testing.T) {
 
 func TestInspectFilters(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/filters/default;test", dummyFiltersResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	_, err := InspectFilters([]string{"default", "test"}, map[string]string{"page": "1"})
 

@@ -6,10 +6,7 @@ import (
 
 func TestWikisForTags(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/tags/tag1;tag2;tag3/wikis", dummyTagWikisResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	tag_wikis, err := session.WikisForTags([]string{"tag1", "tag2", "tag3"}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})

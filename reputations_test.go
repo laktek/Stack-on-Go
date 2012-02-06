@@ -6,10 +6,7 @@ import (
 
 func TestReputationChangesForUsers(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3/reputation", dummyReputationsResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	reputations, err := session.ReputationChangesForUsers([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})

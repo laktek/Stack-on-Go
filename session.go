@@ -19,10 +19,6 @@ func NewSession(site string) *Session {
 	return &Session{Site: site}
 }
 
-func setHost(url string) {
-	host = url
-}
-
 func getTransport() http.RoundTripper {
 	if transport != nil {
 		return transport

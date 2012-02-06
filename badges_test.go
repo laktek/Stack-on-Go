@@ -8,9 +8,6 @@ func TestAllBadges(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/badges", dummyBadgesResponse, t)
 	defer dummy_server.Close()
 
-	//change the host to use the test server
-	setHost(dummy_server.URL)
-
 	session := NewSession("stackoverflow")
 	badges, err := session.AllBadges(map[string]string{})
 
@@ -51,7 +48,7 @@ func TestGetBadges(t *testing.T) {
 
 func TestNamedBadges(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/badges/name", dummyBadgesResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.NamedBadges(map[string]string{})
@@ -64,7 +61,7 @@ func TestNamedBadges(t *testing.T) {
 
 func TestTagBadges(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/badges/tags", dummyBadgesResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.TagBadges(map[string]string{})
@@ -77,7 +74,7 @@ func TestTagBadges(t *testing.T) {
 
 func TestRecentAllBadgeRecipients(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/badges/recipients", dummyBadgesResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	badges, err := session.RecentAllBadgeRecipients(map[string]string{})
@@ -94,7 +91,7 @@ func TestRecentAllBadgeRecipients(t *testing.T) {
 
 func TestRecentBadgeRecipients(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/badges/1;2;3/recipients", dummyBadgesResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	badges, err := session.RecentBadgeRecipients([]int{1, 2, 3}, map[string]string{})
@@ -111,7 +108,7 @@ func TestRecentBadgeRecipients(t *testing.T) {
 
 func TestBadgeOfUsers(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3/badges", dummyBadgesResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	badges, err := session.BadgesOfUsers([]int{1, 2, 3}, map[string]string{})

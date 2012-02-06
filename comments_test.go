@@ -6,10 +6,7 @@ import (
 
 func TestAllComments(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/comments", dummyCommentsResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	comments, err := session.AllComments(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
@@ -42,7 +39,7 @@ func TestAllComments(t *testing.T) {
 
 func TestGetComments(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/comments/1;2;3", dummyCommentsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.GetComments([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
@@ -55,7 +52,7 @@ func TestGetComments(t *testing.T) {
 
 func TestCommentsForQuestions(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/questions/1;2;3/comments", dummyCommentsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.CommentsForQuestions([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
@@ -68,7 +65,7 @@ func TestCommentsForQuestions(t *testing.T) {
 
 func TestCommentsForAnswers(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/answers/1;2;3/comments", dummyCommentsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.CommentsForAnswers([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
@@ -81,7 +78,7 @@ func TestCommentsForAnswers(t *testing.T) {
 
 func TestCommentsForPosts(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/posts/1;2;3/comments", dummyCommentsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.CommentsForPosts([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
@@ -94,7 +91,7 @@ func TestCommentsForPosts(t *testing.T) {
 
 func TestCommentsFromUsers(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3/comments", dummyCommentsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.CommentsFromUsers([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
@@ -107,7 +104,7 @@ func TestCommentsFromUsers(t *testing.T) {
 
 func TestCommentsMentionedUsers(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3/mentioned", dummyCommentsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.CommentsMentionedUsers([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
@@ -120,7 +117,7 @@ func TestCommentsMentionedUsers(t *testing.T) {
 
 func TestCommentsFromUsersTo(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3/comments/4", dummyCommentsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.CommentsFromUsersTo([]int{1, 2, 3}, 4, map[string]string{"sort": "votes", "order": "desc", "page": "1"})

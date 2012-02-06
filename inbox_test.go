@@ -6,10 +6,7 @@ import (
 
 func TestInbox(t *testing.T) {
 	dummy_server := returnDummyResponseForPathAndParams("/2.0/inbox", map[string]string{"key": "app123", "access_token": "abc"}, dummyInboxResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	inbox_items, err := Inbox(map[string]string{"page": "1"}, map[string]string{"key": "app123", "access_token": "abc"})
 
@@ -45,10 +42,7 @@ func TestInbox(t *testing.T) {
 
 func TestUnreadInbox(t *testing.T) {
 	dummy_server := returnDummyResponseForPathAndParams("/2.0/inbox/unread", map[string]string{"key": "app123", "access_token": "abc"}, dummyInboxResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	_, err := UnreadInbox(map[string]string{"page": "1"}, map[string]string{"key": "app123", "access_token": "abc"})
 

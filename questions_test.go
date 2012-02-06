@@ -7,10 +7,7 @@ import (
 
 func TestAllQuestions(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/questions", dummyQuestionsResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	questions, err := session.AllQuestions(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
@@ -43,7 +40,7 @@ func TestAllQuestions(t *testing.T) {
 
 func TestGetQuestions(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/questions/1;2;3", dummyQuestionsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.GetQuestions([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
@@ -56,7 +53,7 @@ func TestGetQuestions(t *testing.T) {
 
 func TestUnansweredQuestions(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/questions/unanswered", dummyQuestionsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.UnansweredQuestions(map[string]string{})
@@ -69,7 +66,7 @@ func TestUnansweredQuestions(t *testing.T) {
 
 func TestQuestionsWithNoAnswers(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/questions/no-answers", dummyQuestionsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.QuestionsWithNoAnswers(map[string]string{})
@@ -82,7 +79,7 @@ func TestQuestionsWithNoAnswers(t *testing.T) {
 
 func TestRelatedQuestions(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/questions/1;2;3/related", dummyQuestionsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.RelatedQuestions([]int{1, 2, 3}, map[string]string{})
@@ -95,7 +92,7 @@ func TestRelatedQuestions(t *testing.T) {
 
 func TestLinkedQuestions(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/questions/1;2;3/linked", dummyQuestionsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.LinkedQuestions([]int{1, 2, 3}, map[string]string{})
@@ -108,7 +105,7 @@ func TestLinkedQuestions(t *testing.T) {
 
 func TestQuestionsFromUsers(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3/questions", dummyQuestionsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.QuestionsFromUsers([]int{1, 2, 3}, map[string]string{})
@@ -121,7 +118,7 @@ func TestQuestionsFromUsers(t *testing.T) {
 
 func TestQuestionsWithNoAnswersFromUsers(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3/questions/no-answers", dummyQuestionsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.QuestionsWithNoAnswersFromUsers([]int{1, 2, 3}, map[string]string{})
@@ -134,7 +131,7 @@ func TestQuestionsWithNoAnswersFromUsers(t *testing.T) {
 
 func TestUnacceptedQuestionsFromUsers(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3/questions/unaccepted", dummyQuestionsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.UnacceptedQuestionsFromUsers([]int{1, 2, 3}, map[string]string{})
@@ -147,7 +144,7 @@ func TestUnacceptedQuestionsFromUsers(t *testing.T) {
 
 func TestUnansweredQuestionsFromUsers(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3/questions/unanswered", dummyQuestionsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.UnansweredQuestionsFromUsers([]int{1, 2, 3}, map[string]string{})
@@ -160,7 +157,7 @@ func TestUnansweredQuestionsFromUsers(t *testing.T) {
 
 func TestFavoriteQuestionsFromUsers(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3/favorites", dummyQuestionsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.FavoriteQuestionsFromUsers([]int{1, 2, 3}, map[string]string{})
@@ -173,7 +170,7 @@ func TestFavoriteQuestionsFromUsers(t *testing.T) {
 
 func TestTopQuestionsFromUsers(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3/tags/hello;world/top-questions", dummyQuestionsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.TopQuestionsFromUsers([]int{1, 2, 3}, []string{"hello", "world"}, map[string]string{})
@@ -186,7 +183,7 @@ func TestTopQuestionsFromUsers(t *testing.T) {
 
 func TestFAQForTags(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/tags/hello;world/faq", dummyQuestionsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.FAQForTags([]string{"hello", "world"}, map[string]string{})
@@ -199,7 +196,7 @@ func TestFAQForTags(t *testing.T) {
 
 func TestSearch(t *testing.T) {
 	dummy_server := returnDummyResponseForPathAndParams("/2.0/search", map[string]string{"intitle": "hello world", "tagged": "basic"}, dummyQuestionsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.Search("hello world", map[string]string{"tagged": "basic"})
@@ -212,7 +209,7 @@ func TestSearch(t *testing.T) {
 
 func TestSimilar(t *testing.T) {
 	dummy_server := returnDummyResponseForPathAndParams("/2.0/similar", map[string]string{"title": "hello world", "tagged": "basic"}, dummyQuestionsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.Similar("hello world", map[string]string{"tagged": "basic"})

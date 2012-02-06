@@ -6,10 +6,7 @@ import (
 
 func TestAllPrivileges(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/privileges", dummyPrivilegesResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	privileges, err := session.AllPrivileges(map[string]string{})
@@ -34,7 +31,7 @@ func TestAllPrivileges(t *testing.T) {
 
 func TestPrivilegesForUser(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/1/privileges", dummyPrivilegesResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.PrivilegesForUser(1, map[string]string{})

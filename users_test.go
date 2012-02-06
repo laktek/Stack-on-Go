@@ -6,10 +6,7 @@ import (
 
 func TestAllUsers(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users", dummyUsersResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	users, err := session.AllUsers(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
@@ -46,7 +43,7 @@ func TestAllUsers(t *testing.T) {
 
 func TestGetUsers(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3", dummyUsersResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.GetUsers([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
@@ -59,7 +56,7 @@ func TestGetUsers(t *testing.T) {
 
 func TestAuthenticatedUser(t *testing.T) {
 	dummy_server := returnDummyResponseForPathAndParams("/2.0/me", map[string]string{"key": "app123", "access_token": "abc"}, dummyUsersResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	user, err := session.AuthenticatedUser(map[string]string{}, map[string]string{"key": "app123", "access_token": "abc"})
@@ -92,10 +89,7 @@ func TestAuthenticatedUser(t *testing.T) {
 
 func TestNoAuthenticatedUser(t *testing.T) {
 	dummy_server := returnDummyResponseForPathAndParams("/2.0/me", map[string]string{"key": "app123", "access_token": "abc"}, dummyMetaInfoResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 _, err := session.AuthenticatedUser(map[string]string{}, map[string]string{"key": "app123", "access_token": "abc"})
@@ -107,7 +101,7 @@ _, err := session.AuthenticatedUser(map[string]string{}, map[string]string{"key"
 
 func TestModerators(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/moderators", dummyUsersResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.Moderators(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
@@ -120,7 +114,7 @@ func TestModerators(t *testing.T) {
 
 func TestElectedModerators(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/moderators/elected", dummyUsersResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.ElectedModerators(map[string]string{"sort": "votes", "order": "desc", "page": "1"})

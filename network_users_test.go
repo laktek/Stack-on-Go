@@ -6,10 +6,7 @@ import (
 
 func TestAssociatedAccounts(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3/associated", dummyNetworkUsersResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	users, err := AssociatedAccounts([]int{1, 2, 3}, map[string]string{"page": "1"})
 

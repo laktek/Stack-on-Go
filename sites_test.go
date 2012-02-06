@@ -6,10 +6,7 @@ import (
 
 func TestAllSites(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/sites", dummySitesResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	sites, err := AllSites(map[string]string{"page": "1"})
 

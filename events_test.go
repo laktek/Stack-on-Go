@@ -6,10 +6,7 @@ import (
 
 func TestEvents(t *testing.T) {
 	dummy_server := returnDummyResponseForPathAndParams("/2.0/events", map[string]string{"key": "app123", "access_token": "abc"}, dummyEventsResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	events, err := session.Events(map[string]string{"page": "1"}, map[string]string{"key": "app123", "access_token": "abc"})

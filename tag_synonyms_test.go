@@ -6,10 +6,7 @@ import (
 
 func TestAllTagSynonyms(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/tags/synonyms", dummyTagSynonymsResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	tag_synonyms, err := session.AllTagSynonyms(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
@@ -42,7 +39,7 @@ func TestAllTagSynonyms(t *testing.T) {
 
 func TestSynonymsForTags(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/tags/tag1;tag2;tag3/synonyms", dummyTagSynonymsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.SynonymsForTags([]string{"tag1", "tag2", "tag3"}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})

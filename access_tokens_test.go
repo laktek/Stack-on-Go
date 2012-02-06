@@ -6,10 +6,7 @@ import (
 
 func TestInspectAccessTokens(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/access-tokens/abc;def;ghi", dummyAccessTokensResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	access_tokens, err := InspectAccessTokens([]string{"abc", "def", "ghi"}, map[string]string{"page": "1"})
 
@@ -41,10 +38,7 @@ func TestInspectAccessTokens(t *testing.T) {
 
 func TestDeauthenticateAccessTokens(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/apps/abc;def;ghi/de-authenticate", dummyAccessTokensResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	_, err := DeauthenticateAccessTokens([]string{"abc", "def", "ghi"}, map[string]string{"page": "1"})
 
@@ -56,10 +50,7 @@ func TestDeauthenticateAccessTokens(t *testing.T) {
 
 func TesInvalidateAccessTokens(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/access-tokens/abc;def;ghi/invalidate", dummyAccessTokensResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	_, err := InvalidateAccessTokens([]string{"abc", "def", "ghi"}, map[string]string{"page": "1"})
 

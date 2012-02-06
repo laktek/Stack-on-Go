@@ -6,10 +6,7 @@ import (
 
 func TestInfo(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/info", dummyInfoResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	info, err := session.Info()
@@ -34,10 +31,7 @@ func TestInfo(t *testing.T) {
 
 func TestNoInfo(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/info", dummyMetaInfoResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.Info()

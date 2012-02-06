@@ -2,15 +2,12 @@ package stackongo
 
 import (
 	"testing"
-  "strings"
+	"strings"
 )
 
 func TestAllSuggestedEdits(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/suggested-edits", dummySuggestedEditsResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	suggested_edits, err := session.AllSuggestedEdits(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
@@ -43,7 +40,7 @@ func TestAllSuggestedEdits(t *testing.T) {
 
 func TestGetSuggestedEdits(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/suggested-edits/1;2;3", dummySuggestedEditsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.GetSuggestedEdits([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
@@ -56,7 +53,7 @@ func TestGetSuggestedEdits(t *testing.T) {
 
 func TestSuggestedEditsForPosts(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/posts/1;2;3/suggested-edits", dummySuggestedEditsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.SuggestedEditsForPosts([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
@@ -68,7 +65,7 @@ func TestSuggestedEditsForPosts(t *testing.T) {
 
 func TestSuggestedEditsFromUsers(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3/suggested-edits", dummySuggestedEditsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.SuggestedEditsFromUsers([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})

@@ -6,10 +6,7 @@ import (
 
 func TestRevisions(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/revisions/1;2;3", dummyRevisionsResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	revisions, err := session.Revisions([]int{1, 2, 3}, map[string]string{})
@@ -38,7 +35,7 @@ func TestRevisions(t *testing.T) {
 
 func TestRevisionsForPosts(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/posts/1;2;3/revisions", dummyRevisionsResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.RevisionsForPosts([]int{1, 2, 3}, map[string]string{})

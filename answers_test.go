@@ -6,10 +6,7 @@ import (
 
 func TestAllAnswers(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/answers", dummyAnswersResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	answers, err := session.AllAnswers(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
@@ -38,7 +35,7 @@ func TestAllAnswers(t *testing.T) {
 
 func TestGetAnswers(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/answers/1;2;3", dummyAnswersResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.GetAnswers([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
@@ -51,7 +48,7 @@ func TestGetAnswers(t *testing.T) {
 
 func TestAnswersForQuestions(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/questions/1;2;3/answers", dummyAnswersResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.AnswersForQuestions([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
@@ -63,7 +60,7 @@ func TestAnswersForQuestions(t *testing.T) {
 
 func TestAnswersFromUsers(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3/answers", dummyAnswersResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.AnswersFromUsers([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
@@ -75,7 +72,7 @@ func TestAnswersFromUsers(t *testing.T) {
 
 func TestTopAnswersFromUsers(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/users/1;2;3/tags/hello;world/top-answers", dummyAnswersResponse, t)
-	defer dummy_server.Close()
+	defer closeDummyServer(dummy_server)
 
 	session := NewSession("stackoverflow")
 	_, err := session.TopAnswersFromUsers([]int{1, 2, 3}, []string{"hello", "world"}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})

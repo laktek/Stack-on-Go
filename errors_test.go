@@ -6,10 +6,7 @@ import (
 
 func TestAllErrors(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/errors", dummyErrorsResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	errors, err := AllErrors(map[string]string{"page": "1"})
 
@@ -33,10 +30,7 @@ func TestAllErrors(t *testing.T) {
 
 func TestSimulateError(t *testing.T) {
 	dummy_server := returnDummyResponseForPath("/2.0/errors/404", dummyErrorResponse, t)
-	defer dummy_server.Close()
-
-	//change the host to use the test server
-	setHost(dummy_server.URL)
+	defer closeDummyServer(dummy_server)
 
 	error, err := SimulateError(404)
 
