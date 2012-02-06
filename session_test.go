@@ -19,6 +19,9 @@ func createDummyServer(handler func(w http.ResponseWriter, r *http.Request)) *ht
 	//change the host to use the test server
 	SetTransport(&http.Transport{Proxy: func(*http.Request) (*url.URL, os.Error) { return url.Parse(dummy_server.URL) }})
 
+	//turn off SSL
+	UseSSL = false
+
 	return dummy_server
 }
 
