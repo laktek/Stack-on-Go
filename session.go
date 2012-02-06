@@ -11,6 +11,9 @@ import (
 var host string = "http://api.stackexchange.com"
 var transport http.RoundTripper
 
+// UseSecure set to communicate using SSL
+var UseSecure bool = false
+
 type Session struct {
 	Site string
 }
@@ -33,6 +36,13 @@ func SetTransport(t http.RoundTripper) {
 // construct the endpoint URL
 func setupEndpoint(path string, params map[string]string) *url.URL {
 	base_url, _ := url.Parse(host)
+
+	if UseSecure {
+		base_url.Scheme = "https"
+	} else {
+		base_url.Scheme = "http"
+	}
+
 	endpoint, _ := base_url.Parse("/2.0/" + path)
 
 	query := endpoint.Query()
