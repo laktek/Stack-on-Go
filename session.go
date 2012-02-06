@@ -9,6 +9,7 @@ import (
 )
 
 var host string = "http://api.stackexchange.com"
+var transport *http.Transport
 
 type Session struct {
 	Site string
@@ -20,6 +21,17 @@ func NewSession(site string) *Session {
 
 func setHost(url string) {
 	host = url
+}
+
+func getTransport() http.RoundTripper {
+	if transport != nil {
+		return transport
+	}
+	return http.DefaultTransport
+}
+
+func SetTransport(t *http.Transport) {
+	transport = t
 }
 
 // construct the endpoint URL
@@ -64,16 +76,6 @@ func parseResponse(response *http.Response, result interface{}) (error os.Error)
 	return
 }
 
-// make the request
-func (session Session) get_old(section string, params map[string]string) (*http.Response, os.Error) {
-	client := new(http.Client)
-
-	//set parameters for querystring
-	params["site"] = session.Site
-
-	return client.Get(setupEndpoint(section, params).String())
-}
-
 func (session Session) get(section string, params map[string]string, collection interface{}) (error os.Error) {
 	//set parameters for querystring
 	params["site"] = session.Site
@@ -82,7 +84,7 @@ func (session Session) get(section string, params map[string]string, collection 
 }
 
 func get(section string, params map[string]string, collection interface{}) (error os.Error) {
-	client := new(http.Client)
+	client := &http.Client{Transport: getTransport()}
 
 	response, error := client.Get(setupEndpoint(section, params).String())
 
