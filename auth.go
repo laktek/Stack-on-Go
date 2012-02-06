@@ -53,7 +53,7 @@ func ObtainAccessToken(client_id, client_secret, code, redirect_uri string) (out
 	}
 
 	//check whether the response is a bad request
-	if response.StatusCode == 400 {
+	if response.StatusCode != 200 {
 		collection := new(authError)
 		error = parseResponse(response, collection)
 
