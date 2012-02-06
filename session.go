@@ -9,7 +9,7 @@ import (
 )
 
 var host string = "http://api.stackexchange.com"
-var transport *http.Transport
+var transport http.Transport
 
 type Session struct {
 	Site string
@@ -30,7 +30,7 @@ func getTransport() http.RoundTripper {
 	return http.DefaultTransport
 }
 
-func SetTransport(t *http.Transport) {
+func SetTransport(t http.Transport) {
 	transport = t
 }
 
