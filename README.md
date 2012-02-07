@@ -17,22 +17,23 @@ To install the package using `goinstall` run:
  goinstall github.com/laktek/Stack-on-Go 
  ```
 
-Or you can [clone](https://github.com/laktek/Stack-on-Go) this repo and run:
+Or for manual install run:
   
   ```bash
+  git clone https://github.com/laktek/Stack-on-Go
   cd Stack-on-Go
   make install
   ```
 
 ### Basic Usage
 
-To use *Stack on Go* first you will need to import it in your source file.
+Once installed, you can use *Stack on Go* by importing it in your source.
 
   ```go
   import "github.com/laktek/stack-on-go"
   ```
 
-By default, package will be named as `stackongo`, but you could give an alternate name in the import.
+By default, package will be named as `stackongo`. If you want you can give an alternate name at the import.
 
 To execute methods on specific StackExchange site, you should create a new session by passing the site name as a string.
 

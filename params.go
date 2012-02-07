@@ -13,6 +13,11 @@ func (p Params) Add(key string, value interface{}) {
 	p[key] = fmt.Sprintf("%v", value)
 }
 
+// Set change the value of the given param 
+func (p Params) Set(key string, value interface{}) {
+	p.Add(key, value)
+}
+
 // Del deletes the given parameter
 func (p Params) Del(key string) {
 	p[key] = "", false

@@ -14,6 +14,15 @@ func TestParamsAdd(t *testing.T) {
 	}
 }
 
+func TestParamsSet(t *testing.T) {
+	params := make(Params)
+	params.Set("key", 5)
+
+	if params["key"] != "5" {
+		t.Errorf("%v doesn't match expectation", params)
+	}
+}
+
 func TestParamsDel(t *testing.T) {
 	params := make(Params)
 	params.Add("key", "test")
