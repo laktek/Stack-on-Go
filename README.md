@@ -8,81 +8,81 @@ This is a wrapper written in Go(lang) for [Stack Exchange API 2.0](https://api.s
 
 To install the package using `goinstall` run:
 
-{% highlight bash %}
+```bash
   goinstall github.com/laktek/Stack-on-Go 
-{% endhighlight %}
+```
 
 Or for manual install run:
   
-{% highlight bash %}
+```bash
   git clone https://github.com/laktek/Stack-on-Go
   cd Stack-on-Go
   make install
-{% endhighlight %}
+```
  
 ### Basic Usage
 
 Once installed, you can use *Stack on Go* by importing it in your source.
 
-{% highlight go %}
+```go
   import "github.com/laktek/stack-on-go"
-{% endhighlight %}
+```
 
 By default, package will be named as `stackongo`. If you want you can give an alternate name at the import.
 
 Stack Exchange API contains global and site specific methods. You can directly call a global method:
 
-{% highlight go %}
+```go
   sites, err := stackongo.AllSites(params)
-{% endhighlight %}
+```
 
 Before calling site specific methods, you need to create a new session. A site identifier should be passed as a string (ususally, it's the domain of the site).
 
-{% highlight go %}
+```go
   session := stackongo.NewSession("stackoverflow")
-{% endhighlight %}
+```
 
 Then call the methods in the scope of created session.
 
-{% highlight go %}
+```go
   info, err := session.Info()
-{% endhighlight %}
+```
 
 Most methods accept a map of parameters. There's a special `Params` type that you can use to create one. 
 
-{% highlight go %}
+```go
   //set the params
   params := make(stackongo.Params)
   params.Add("filter", "total")
   params.AddVectorized("tagged", []string("go", "ruby", "java"))
 
   questions, err := session.AllQuestions(params)
-{% endhighlight %}
+```
 
 If you prefer, you can directly pass a `map[string]string` literal as parameters:
 
-{% highlight go %}
+```go
   questions, err := session.AllQuestions(map[string]string{"filter": "total", "tagged": "go;ruby;java"})
-{% endhighlight %}
+```
 
 Most methods returns a `struct` containing a collection of items and meta information (more details in StackExchange docs). You can traverse through the results to create the output:
 
-{% highlight go %}
+```go
   for _, question := range questions.Items {
 		fmt.Printf("%v\n", question.Title)
 		fmt.Printf("Asked By: %v on %v\n", question.Owner.Display_name, time.SecondsToUTC(question.Creation_date))
 		fmt.Printf("Link: %v\n\n", question.Link)
 	}
-{% endhighlight %}
+```
 
 You can use the meta information to make run-time decisions. For example, you can check for more results available and load them progressively.
 
-{% highlight go %}
+```go
   if questions.Has_more {
     params.Page(page + 1)
     questions, err = session.AllQuestions(params)
 	}
-{% endhighlight %}
+```
 
 ### Authentication 
 
@@ -92,7 +92,7 @@ Stack Exchange follows the OAuth 2.0 workflow for user authentication. *Stack on
 
 Check the following code sample, which explains the authentication flow:
 
-{% highlight go %}
+```go
   func init() {
     http.HandleFunc("/", authorize)
     http.HandleFunc("/profile", profile)
@@ -121,7 +121,7 @@ Check the following code sample, which explains the authentication flow:
     }
 
   }
-{% endhighlight %}
+```
 
 ### Using with AppEngine
 
@@ -129,8 +129,7 @@ If you plan to deploy your *Stack on Go* based app on Google AppEngine, remember
 
 Here's how to do it:
 
-{% highlight go %}
-
+```go
   import (
     "github.com/laktek/stack-on-go"
     "appengine/urlfetch"
@@ -145,7 +144,7 @@ Here's how to do it:
 		session := stackongo.NewSession("stackoverflow")
     info, err := session.Info()
   }
-{% endhighlight %}
+```
 
 ### Tests and Documentation
 
