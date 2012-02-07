@@ -1,18 +1,20 @@
 ## Stack on Go
 
-This is a wrapper written in Go(lang) for [Stack Exchange API 2.0](https://api.stackexchange.com).
+This is a wrapper written in Golang for [Stack Exchange API 2.0](https://api.stackexchange.com).
 
 ### Installation
 
-*Stack on Go* is targeted for the current Go release r.60.3 and it can be installed either with `goinstall` or manually.
+Let's have a look how to get started with *Stack on Go*.
 
-To install the package using `goinstall` run:
+*Stack on Go* is targeted for the current Go release r.60.3 and you can chose one of the following methods to install it.
+
+To install the package using `goinstall`, run:
 
 ```bash
   goinstall github.com/laktek/Stack-on-Go 
 ```
 
-Or for manual install run:
+Or for manual install:
   
 ```bash
   git clone https://github.com/laktek/Stack-on-Go
@@ -28,27 +30,27 @@ Once installed, you can use *Stack on Go* by importing it in your source.
   import "github.com/laktek/stack-on-go"
 ```
 
-By default, package will be named as `stackongo`. If you want you can give an alternate name at the import.
+By default, package will be named as `stackongo`. If you want, you can give an alternate name at the import.
 
-Stack Exchange API contains global and site specific methods. You can directly call a global method:
+Stack Exchange API contains global and site specific methods. Global methods can be directly called like this:
 
 ```go
   sites, err := stackongo.AllSites(params)
 ```
 
-Before calling site specific methods, you need to create a new session. A site identifier should be passed as a string (ususally, it's the domain of the site).
+Before calling site specific methods, you need to create a new session. A site identifier should be passed as a string (usually, it's the domain of the site).
 
 ```go
   session := stackongo.NewSession("stackoverflow")
 ```
 
-Then call the methods in the scope of created session.
+Then call the methods in scope of the created session.
 
 ```go
   info, err := session.Info()
 ```
 
-Most methods accept a map of parameters. There's a special `Params` type that you can use to create one. 
+Most methods accept a map of parameters. There's a special `Params` type that you can use to create a parameter map. 
 
 ```go
   //set the params
@@ -59,13 +61,13 @@ Most methods accept a map of parameters. There's a special `Params` type that yo
   questions, err := session.AllQuestions(params)
 ```
 
-If you prefer, you can directly pass a `map[string]string` literal as parameters:
+If you prefer, you can pass your parameters directly in a `map[string]string` literal:
 
 ```go
   questions, err := session.AllQuestions(map[string]string{"filter": "total", "tagged": "go;ruby;java"})
 ```
 
-Most methods returns a `struct` containing a collection of items and meta information (more details in StackExchange docs). You can traverse through the results to create the output:
+Most methods returns a `struct` containing a collection of items and meta information (more details available in [StackExchange docs](https://api.stackexchange.com/docs/wrapper) ). You can traverse through the results to create an output:
 
 ```go
   for _, question := range questions.Items {
@@ -75,7 +77,7 @@ Most methods returns a `struct` containing a collection of items and meta inform
 	}
 ```
 
-You can use the meta information to make run-time decisions. For example, you can check for more results available and load them progressively.
+You can use the returned meta information to make run-time decisions. For example, you can check whether there are more results and load them progressively.
 
 ```go
   if questions.Has_more {
@@ -125,11 +127,12 @@ Check the following code sample, which explains the authentication flow:
 
 ### Using with AppEngine
 
-If you plan to deploy your *Stack on Go* based app on Google AppEngine, remember to do a one slight modification to your code. Since AppEngine has a special package to fetch external URLs you have to set it as the transport method for *Stack on Go*. 
+If you plan to deploy your app on [Google AppEngine](http://code.google.com/appengine/docs/go/), remember to do a one slight modification in your code. Since AppEngine has a special package to fetch external URLs you have to set it as the transport method for *Stack on Go*. 
 
 Here's how to do it:
 
 ```go
+
   import (
     "github.com/laktek/stack-on-go"
     "appengine/urlfetch"
