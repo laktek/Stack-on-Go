@@ -6,20 +6,12 @@ This is a wrapper written in Golang for [Stack Exchange API 2.0](https://api.sta
 
 Let's have a look how to get started with *Stack on Go*.
 
-*Stack on Go* is targeted for the current Go release r.60.3 and you can chose one of the following methods to install it.
+*Stack on Go* fully supports Go1.
 
-To install the package using `goinstall`, run:
+To install the package, run:
 
 ```bash
-  goinstall github.com/laktek/Stack-on-Go 
-```
-
-Or for manual install:
-  
-```bash
-  git clone https://github.com/laktek/Stack-on-Go
-  cd Stack-on-Go
-  make install
+  go get github.com/laktek/Stack-on-Go 
 ```
  
 ### Basic Usage
@@ -27,7 +19,7 @@ Or for manual install:
 Once installed, you can use *Stack on Go* by importing it in your source.
 
 ```go
-  import "github.com/laktek/stack-on-go"
+  import "github.com/laktek/Stack-on-Go/stackongo"
 ```
 
 By default, package will be named as `stackongo`. If you want, you can give an alternate name at the import.
@@ -134,7 +126,7 @@ Here's how to do it:
 ```go
 
   import (
-    "github.com/laktek/stack-on-go"
+    "github.com/laktek/Stack-on-Go/stackongo"
     "appengine/urlfetch"
   )
 
