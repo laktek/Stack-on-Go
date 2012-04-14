@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 import "time"
-import "github.com/laktek/stack-on-go"
+import "github.com/laktek/Stack-on-Go/stackongo"
 
 func main() {
 	fmt.Printf("Frequently Asked Questions about Go:\n")
@@ -11,7 +11,7 @@ func main() {
 	questions, err := session.FAQForTags([]string{"Go"}, map[string]string{})
 
 	if err != nil {
-		fmt.Printf(err.String())
+		fmt.Printf(err.Error())
 	}
 
 	for _, question := range questions.Items {

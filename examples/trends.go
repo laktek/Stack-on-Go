@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 import "time"
-import "github.com/laktek/stack-on-go"
+import "github.com/laktek/Stack-on-Go/stackongo"
 
 func main() {
 	tags := []string{"Go", "Erlang", "Ruby", "Python", "JavaScript"}
@@ -23,7 +23,7 @@ func main() {
 		results, err := session.AllQuestions(params)
 
 		if err != nil {
-			fmt.Printf(err.String())
+			fmt.Printf(err.Error())
 		}
 
 		fmt.Printf("%v  %v\n", tag, results.Total)

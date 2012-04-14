@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 import "time"
-import "github.com/laktek/stack-on-go"
+import "github.com/laktek/Stack-on-Go/stackongo"
 
 func main() {
 	show_pages_upto := 5
@@ -23,7 +23,7 @@ func main() {
 		questions, err := session.AllQuestions(params)
 
 		if err != nil {
-			fmt.Printf(err.String())
+			fmt.Printf(err.Error())
 		}
 
 		for _, question := range questions.Items {

@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 import "time"
-import "github.com/laktek/stack-on-go"
+import "github.com/laktek/Stack-on-Go/stackongo"
 
 func main() {
 
@@ -20,7 +20,7 @@ func main() {
 	users, err := session.AllUsers(user_params)
 
 	if err != nil {
-		fmt.Printf(err.String())
+		fmt.Printf(err.Error())
 	}
 
 	var user_ids []int
@@ -34,7 +34,7 @@ func main() {
 	questions, err2 := session.QuestionsFromUsers(user_ids, question_params)
 
 	if err2 != nil {
-		fmt.Printf(err2.String())
+		fmt.Printf(err2.Error())
 	}
 
 	for _, question := range questions.Items {
