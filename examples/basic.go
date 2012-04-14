@@ -1,12 +1,12 @@
 package main
 
 import "fmt"
-import "github.com/laktek/stack-on-go"
+import "github.com/laktek/stack-on-go/stackongo"
 
 func main() {
 	fmt.Printf("Here are some facts about StackOverflow:\n")
 
-	session := stackongo.NewSession("stackoverflow")
+	session := stack-on-go.NewSession("stackoverflow")
 	info, err := session.Info()
 
 	if err != nil {
