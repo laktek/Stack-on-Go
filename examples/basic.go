@@ -6,11 +6,11 @@ import "github.com/laktek/stack-on-go/stackongo"
 func main() {
 	fmt.Printf("Here are some facts about StackOverflow:\n")
 
-	session := stackongo.NewSession("stackoverflow")
+	session := stack-on-go.NewSession("stackoverflow")
 	info, err := session.Info()
 
 	if err != nil {
-		fmt.Printf(err.Error())
+		fmt.Printf(err.String())
 	}
 
 	fmt.Printf("Total Questions: %v\n", info.Total_questions)
