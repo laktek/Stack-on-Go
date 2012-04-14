@@ -12,7 +12,7 @@ func TestAllUsers(t *testing.T) {
 	users, err := session.AllUsers(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if len(users.Items) != 1 {
@@ -49,7 +49,7 @@ func TestGetUsers(t *testing.T) {
 	_, err := session.GetUsers([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -62,7 +62,7 @@ func TestAuthenticatedUser(t *testing.T) {
 	user, err := session.AuthenticatedUser(map[string]string{}, map[string]string{"key": "app123", "access_token": "abc"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if user.User_id != 22656 {
@@ -94,7 +94,7 @@ func TestNoAuthenticatedUser(t *testing.T) {
 	session := NewSession("stackoverflow")
 _, err := session.AuthenticatedUser(map[string]string{}, map[string]string{"key": "app123", "access_token": "abc"})
 
-	if err.String() != "User not found" {
+	if err.Error() != "User not found" {
 		t.Error("Error didn't match")
 	}
 }
@@ -107,7 +107,7 @@ func TestModerators(t *testing.T) {
 	_, err := session.Moderators(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -120,7 +120,7 @@ func TestElectedModerators(t *testing.T) {
 	_, err := session.ElectedModerators(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }

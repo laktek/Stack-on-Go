@@ -11,7 +11,7 @@ func TestInbox(t *testing.T) {
 	inbox_items, err := Inbox(map[string]string{"page": "1"}, map[string]string{"key": "app123", "access_token": "abc"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if len(inbox_items.Items) != 1 {
@@ -47,7 +47,7 @@ func TestUnreadInbox(t *testing.T) {
 	_, err := UnreadInbox(map[string]string{"page": "1"}, map[string]string{"key": "app123", "access_token": "abc"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }

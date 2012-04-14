@@ -11,7 +11,7 @@ func TestAssociatedAccounts(t *testing.T) {
 	users, err := AssociatedAccounts([]int{1, 2, 3}, map[string]string{"page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if len(users.Items) != 3 {

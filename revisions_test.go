@@ -12,7 +12,7 @@ func TestRevisions(t *testing.T) {
 	revisions, err := session.Revisions([]int{1, 2, 3}, map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if len(revisions.Items) != 3 {
@@ -41,7 +41,7 @@ func TestRevisionsForPosts(t *testing.T) {
 	_, err := session.RevisionsForPosts([]int{1, 2, 3}, map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }

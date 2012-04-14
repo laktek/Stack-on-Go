@@ -1,13 +1,12 @@
 package stackongo
 
 import (
-	"os"
 	"fmt"
 	"strings"
 )
 
 // AssociatedAccounts returns all associated accounts for the given user ids.
-func AssociatedAccounts(ids []int, params map[string]string) (output *NetworkUsers, error os.Error) {
+func AssociatedAccounts(ids []int, params map[string]string) (output *NetworkUsers, error error) {
 
 	string_ids := []string{}
 	for _, v := range ids {

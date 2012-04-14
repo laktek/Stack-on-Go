@@ -2,8 +2,8 @@ package stackongo
 
 import (
 	"fmt"
-	"time"
 	"strings"
+	"time"
 )
 
 type Params map[string]string
@@ -20,7 +20,7 @@ func (p Params) Set(key string, value interface{}) {
 
 // Del deletes the given parameter
 func (p Params) Del(key string) {
-	p[key] = "", false
+	delete(p, key)
 }
 
 // Page sets the page parameter
@@ -34,13 +34,13 @@ func (p Params) Pagesize(num int) {
 }
 
 // Fromdate sets fromdate parameter from the given *Time reference 
-func (p Params) Fromdate(date *time.Time) {
-	p.Add("fromdate", date.Seconds())
+func (p Params) Fromdate(date time.Time) {
+	p.Add("fromdate", date.Unix())
 }
 
 // Todate sets todate parameter from the given *Time reference 
-func (p Params) Todate(date *time.Time) {
-	p.Add("todate", date.Seconds())
+func (p Params) Todate(date time.Time) {
+	p.Add("todate", date.Unix())
 }
 
 // Sort sets the field to sort results 

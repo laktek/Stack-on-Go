@@ -12,7 +12,7 @@ func TestTopAnswerers(t *testing.T) {
 	tag_scores, err := session.TopAnswerers("test", "all_time", map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if len(tag_scores.Items) != 3 {
@@ -41,7 +41,7 @@ func TestTopAskers(t *testing.T) {
 	_, err := session.TopAskers("test", "all_time", map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }

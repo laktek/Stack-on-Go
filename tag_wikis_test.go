@@ -12,7 +12,7 @@ func TestWikisForTags(t *testing.T) {
 	tag_wikis, err := session.WikisForTags([]string{"tag1", "tag2", "tag3"}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if len(tag_wikis.Items) != 1 {

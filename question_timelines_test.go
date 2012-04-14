@@ -12,7 +12,7 @@ func TestTimelineForQuestions(t *testing.T) {
 	question_timelines, err := session.TimelineForQuestions([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if len(question_timelines.Items) != 3 {

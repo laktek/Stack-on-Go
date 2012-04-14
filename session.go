@@ -1,11 +1,11 @@
 package stackongo
 
 import (
-	"http"
-	"json"
+	"encoding/json"
+	"errors"
 	"io/ioutil"
-	"url"
-	"os"
+	"net/http"
+	"net/url"
 )
 
 var host string = "http://api.stackexchange.com"
@@ -56,7 +56,7 @@ func setupEndpoint(path string, params map[string]string) *url.URL {
 }
 
 // parse the response
-func parseResponse(response *http.Response, result interface{}) (error os.Error) {
+func parseResponse(response *http.Response, result interface{}) (error error) {
 	// close the body when done reading
 	defer response.Body.Close()
 
@@ -71,25 +71,25 @@ func parseResponse(response *http.Response, result interface{}) (error os.Error)
 	error = json.Unmarshal(bytes, result)
 
 	if error != nil {
-		print(error.String())
+		print(error.Error())
 	}
 
 	//check whether the response is a bad request
 	if response.StatusCode == 400 {
-		error = os.NewError("Bad Request")
+		error = errors.New("Bad Request")
 	}
 
 	return
 }
 
-func (session Session) get(section string, params map[string]string, collection interface{}) (error os.Error) {
+func (session Session) get(section string, params map[string]string, collection interface{}) (error error) {
 	//set parameters for querystring
 	params["site"] = session.Site
 
 	return get(section, params, collection)
 }
 
-func get(section string, params map[string]string, collection interface{}) (error os.Error) {
+func get(section string, params map[string]string, collection interface{}) (error error) {
 	client := &http.Client{Transport: getTransport()}
 
 	response, error := client.Get(setupEndpoint(section, params).String())

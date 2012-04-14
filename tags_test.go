@@ -12,7 +12,7 @@ func TestAllTags(t *testing.T) {
 	tags, err := session.AllTags(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if len(tags.Items) != 3 {
@@ -41,7 +41,7 @@ func TestTagsForUsers(t *testing.T) {
 	_, err := session.TagsForUsers([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -54,7 +54,7 @@ func TestRelatedTags(t *testing.T) {
 	_, err := session.RelatedTags([]string{"tag1", "tag2", "tag3"}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }

@@ -12,7 +12,7 @@ func TestAllTagSynonyms(t *testing.T) {
 	tag_synonyms, err := session.AllTagSynonyms(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if len(tag_synonyms.Items) != 3 {
@@ -45,7 +45,7 @@ func TestSynonymsForTags(t *testing.T) {
 	_, err := session.SynonymsForTags([]string{"tag1", "tag2", "tag3"}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }

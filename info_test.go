@@ -12,7 +12,7 @@ func TestInfo(t *testing.T) {
 	info, err := session.Info()
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if info.Total_badges != 2575799 {
@@ -36,7 +36,7 @@ func TestNoInfo(t *testing.T) {
 	session := NewSession("stackoverflow")
 	_, err := session.Info()
 
-	if err.String() != "Site not found" {
+	if err.Error() != "Site not found" {
 		t.Error("Error didn't match")
 	}
 }

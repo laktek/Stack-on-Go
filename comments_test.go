@@ -12,7 +12,7 @@ func TestAllComments(t *testing.T) {
 	comments, err := session.AllComments(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if len(comments.Items) != 3 {
@@ -45,7 +45,7 @@ func TestGetComments(t *testing.T) {
 	_, err := session.GetComments([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -58,7 +58,7 @@ func TestCommentsForQuestions(t *testing.T) {
 	_, err := session.CommentsForQuestions([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -71,7 +71,7 @@ func TestCommentsForAnswers(t *testing.T) {
 	_, err := session.CommentsForAnswers([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -84,7 +84,7 @@ func TestCommentsForPosts(t *testing.T) {
 	_, err := session.CommentsForPosts([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -97,7 +97,7 @@ func TestCommentsFromUsers(t *testing.T) {
 	_, err := session.CommentsFromUsers([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -110,7 +110,7 @@ func TestCommentsMentionedUsers(t *testing.T) {
 	_, err := session.CommentsMentionedUsers([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -123,7 +123,7 @@ func TestCommentsFromUsersTo(t *testing.T) {
 	_, err := session.CommentsFromUsersTo([]int{1, 2, 3}, 4, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }

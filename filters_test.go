@@ -11,7 +11,7 @@ func TestCreateFilter(t *testing.T) {
 	filters, err := CreateFilter(map[string]string{"unsafe": "false"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if filters.Items[0].Filter != "default" {
@@ -35,7 +35,7 @@ func TestInspectFilters(t *testing.T) {
 	_, err := InspectFilters([]string{"default", "test"}, map[string]string{"page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }

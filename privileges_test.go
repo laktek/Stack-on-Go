@@ -12,7 +12,7 @@ func TestAllPrivileges(t *testing.T) {
 	privileges, err := session.AllPrivileges(map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if len(privileges.Items) != 3 {
@@ -37,7 +37,7 @@ func TestPrivilegesForUser(t *testing.T) {
 	_, err := session.PrivilegesForUser(1, map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }

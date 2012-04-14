@@ -12,7 +12,7 @@ func TestAllBadges(t *testing.T) {
 	badges, err := session.AllBadges(map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if len(badges.Items) != 3 {
@@ -41,7 +41,7 @@ func TestGetBadges(t *testing.T) {
 	_, err := session.GetBadges([]int{1, 2, 3}, map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -54,7 +54,7 @@ func TestNamedBadges(t *testing.T) {
 	_, err := session.NamedBadges(map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -67,7 +67,7 @@ func TestTagBadges(t *testing.T) {
 	_, err := session.TagBadges(map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -80,7 +80,7 @@ func TestRecentAllBadgeRecipients(t *testing.T) {
 	badges, err := session.RecentAllBadgeRecipients(map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if badges.Items[0].User.Display_name != "Joel Martinez" {
@@ -97,7 +97,7 @@ func TestRecentBadgeRecipients(t *testing.T) {
 	badges, err := session.RecentBadgeRecipients([]int{1, 2, 3}, map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if badges.Items[0].User.Display_name != "Joel Martinez" {
@@ -114,7 +114,7 @@ func TestBadgeOfUsers(t *testing.T) {
 	badges, err := session.BadgesOfUsers([]int{1, 2, 3}, map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if badges.Items[0].User.Display_name != "Joel Martinez" {

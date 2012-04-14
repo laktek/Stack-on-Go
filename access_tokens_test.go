@@ -11,7 +11,7 @@ func TestInspectAccessTokens(t *testing.T) {
 	access_tokens, err := InspectAccessTokens([]string{"abc", "def", "ghi"}, map[string]string{"page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error());
 	}
 
 	if len(access_tokens.Items) != 3 {
@@ -43,7 +43,7 @@ func TestDeauthenticateAccessTokens(t *testing.T) {
 	_, err := DeauthenticateAccessTokens([]string{"abc", "def", "ghi"}, map[string]string{"page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -55,7 +55,7 @@ func TesInvalidateAccessTokens(t *testing.T) {
 	_, err := InvalidateAccessTokens([]string{"abc", "def", "ghi"}, map[string]string{"page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }

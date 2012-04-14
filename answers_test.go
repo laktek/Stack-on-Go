@@ -12,7 +12,7 @@ func TestAllAnswers(t *testing.T) {
 	answers, err := session.AllAnswers(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if len(answers.Items) != 3 {
@@ -41,7 +41,7 @@ func TestGetAnswers(t *testing.T) {
 	_, err := session.GetAnswers([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -54,7 +54,7 @@ func TestAnswersForQuestions(t *testing.T) {
 	_, err := session.AnswersForQuestions([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 }
 
@@ -66,7 +66,7 @@ func TestAnswersFromUsers(t *testing.T) {
 	_, err := session.AnswersFromUsers([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 }
 
@@ -78,7 +78,7 @@ func TestTopAnswersFromUsers(t *testing.T) {
 	_, err := session.TopAnswersFromUsers([]int{1, 2, 3}, []string{"hello", "world"}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 }
 

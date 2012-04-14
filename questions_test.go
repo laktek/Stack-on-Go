@@ -13,7 +13,7 @@ func TestAllQuestions(t *testing.T) {
 	questions, err := session.AllQuestions(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if len(questions.Items) != 3 {
@@ -46,7 +46,7 @@ func TestGetQuestions(t *testing.T) {
 	_, err := session.GetQuestions([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -59,7 +59,7 @@ func TestUnansweredQuestions(t *testing.T) {
 	_, err := session.UnansweredQuestions(map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -72,7 +72,7 @@ func TestQuestionsWithNoAnswers(t *testing.T) {
 	_, err := session.QuestionsWithNoAnswers(map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -85,7 +85,7 @@ func TestRelatedQuestions(t *testing.T) {
 	_, err := session.RelatedQuestions([]int{1, 2, 3}, map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -98,7 +98,7 @@ func TestLinkedQuestions(t *testing.T) {
 	_, err := session.LinkedQuestions([]int{1, 2, 3}, map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -111,7 +111,7 @@ func TestQuestionsFromUsers(t *testing.T) {
 	_, err := session.QuestionsFromUsers([]int{1, 2, 3}, map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -124,7 +124,7 @@ func TestQuestionsWithNoAnswersFromUsers(t *testing.T) {
 	_, err := session.QuestionsWithNoAnswersFromUsers([]int{1, 2, 3}, map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -137,7 +137,7 @@ func TestUnacceptedQuestionsFromUsers(t *testing.T) {
 	_, err := session.UnacceptedQuestionsFromUsers([]int{1, 2, 3}, map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -150,7 +150,7 @@ func TestUnansweredQuestionsFromUsers(t *testing.T) {
 	_, err := session.UnansweredQuestionsFromUsers([]int{1, 2, 3}, map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -163,7 +163,7 @@ func TestFavoriteQuestionsFromUsers(t *testing.T) {
 	_, err := session.FavoriteQuestionsFromUsers([]int{1, 2, 3}, map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -176,7 +176,7 @@ func TestTopQuestionsFromUsers(t *testing.T) {
 	_, err := session.TopQuestionsFromUsers([]int{1, 2, 3}, []string{"hello", "world"}, map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -189,7 +189,7 @@ func TestFAQForTags(t *testing.T) {
 	_, err := session.FAQForTags([]string{"hello", "world"}, map[string]string{})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -202,7 +202,7 @@ func TestSearch(t *testing.T) {
 	_, err := session.Search("hello world", map[string]string{"tagged": "basic"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -215,7 +215,7 @@ func TestSimilar(t *testing.T) {
 	_, err := session.Similar("hello world", map[string]string{"tagged": "basic"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }

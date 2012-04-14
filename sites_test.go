@@ -11,7 +11,7 @@ func TestAllSites(t *testing.T) {
 	sites, err := AllSites(map[string]string{"page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if len(sites.Items) != 3 {

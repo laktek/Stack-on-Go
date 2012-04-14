@@ -12,7 +12,7 @@ func TestEvents(t *testing.T) {
 	events, err := session.Events(map[string]string{"page": "1"}, map[string]string{"key": "app123", "access_token": "abc"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if len(events.Items) != 3 {

@@ -120,15 +120,14 @@ type NetworkUser struct {
 }
 
 type MetaInfo struct {
-Backoff int 
-Has_more bool
-Page int
-Page_size int 
-Quota_max int 
-Quota_remaining int 
-Total int
-Type string
-  
+  Backoff int 
+  Has_more bool
+  Page int
+  Page_size int 
+  Quota_max int 
+  Quota_remaining int 
+  Total int
+  Type string
 }
 
 type Migration_info struct {

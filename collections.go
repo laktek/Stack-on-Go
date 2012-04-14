@@ -1,151 +1,393 @@
 package stackongo
 
 type AccessTokens struct {
-	Items []AccessToken
-	Error
-	MetaInfo
+	Items         []AccessToken
+	Error_id      int
+	Error_name    string
+	Error_message string
+
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type Answers struct {
-	Items []Answer
-	Error
-	MetaInfo
+	Items         []Answer
+	Error_id      int
+	Error_name    string
+	Error_message string
+
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type Badges struct {
-	Items []Badge
-	Error
-	MetaInfo
+	Items         []Badge
+	Error_id      int
+	Error_name    string
+	Error_message string
+
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type Comments struct {
-	Items []Comment
-	Error
-	MetaInfo
+	Items         []Comment
+	Error_id      int
+	Error_name    string
+	Error_message string
+
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type Errors struct {
-	Items []Error
-	Error
-	MetaInfo
+	Items         []Error
+	Error_id      int
+	Error_name    string
+	Error_message string
+
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type Events struct {
-	Items []Event
-	Error
-	MetaInfo
+	Items         []Event
+	Error_id      int
+	Error_name    string
+	Error_message string
+
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type infoCollection struct {
-	Items []Info
-	Error
-	MetaInfo
+	Items         []Info
+	Error_id      int
+	Error_name    string
+	Error_message string
+
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type InboxItems struct {
-	Items []InboxItem
-	Error
-	MetaInfo
+	Items         []InboxItem
+	Error_id      int
+	Error_name    string
+	Error_message string
+
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type Filters struct {
-	Items []Filter
-	Error
-	MetaInfo
+	Items         []Filter
+	Error_id      int
+	Error_name    string
+	Error_message string
+
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type NetworkUsers struct {
-	Items []NetworkUser
-	Error
-	MetaInfo
+	Items         []NetworkUser
+	Error_id      int
+	Error_name    string
+	Error_message string
+
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type Posts struct {
 	Items []Post
-	Error
-	MetaInfo
+	Error_id      int
+	Error_name    string
+	Error_message string
+
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type Privileges struct {
 	Items []Privilege
-	Error
-	MetaInfo
+	Error_id      int
+	Error_name    string
+	Error_message string
+
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type Questions struct {
 	Items []Question
-	Error
-	MetaInfo
+	Error_id      int
+	Error_name    string
+	Error_message string
+
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type QuestionTimelines struct {
 	Items []QuestionTimeline
-	Error
-	MetaInfo
+	Error_id      int
+	Error_name    string
+	Error_message string
+
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type Reputations struct {
 	Items []Reputation
-	Error
-	MetaInfo
+	Error_id      int
+	Error_name    string
+	Error_message string
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type Revisions struct {
 	Items []Revision
-	Error
-	MetaInfo
+	Error_id      int
+	Error_name    string
+	Error_message string
+
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type Sites struct {
 	Items []Site
-	Error
-	MetaInfo
+	Error_id      int
+	Error_name    string
+	Error_message string
+
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type SuggestedEdits struct {
 	Items []SuggestedEdit
-	Error
-	MetaInfo
+	Error_id      int
+	Error_name    string
+	Error_message string
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type Tags struct {
 	Items []Tag
-	Error
-	MetaInfo
+	Error_id      int
+	Error_name    string
+	Error_message string
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type TagScores struct {
 	Items []TagScore
-	Error
-	MetaInfo
+	Error_id      int
+	Error_name    string
+	Error_message string
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type TagSynonyms struct {
 	Items []TagSynonym
-	Error
-	MetaInfo
+	Error_id      int
+	Error_name    string
+	Error_message string
+
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type TagWikis struct {
 	Items []TagWiki
-	Error
-	MetaInfo
+	Error_id      int
+	Error_name    string
+	Error_message string
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type TopTags struct {
 	Items []TopTag
-	Error
-	MetaInfo
+	Error_id      int
+	Error_name    string
+	Error_message string
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type Users struct {
 	Items []User
-	Error
-	MetaInfo
+	Error_id      int
+	Error_name    string
+	Error_message string
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }
 
 type UserTimelines struct {
 	Items []UserTimeline
-	Error
-	MetaInfo
+	Error_id      int
+	Error_name    string
+	Error_message string
+	Backoff         int
+	Has_more        bool
+	Page            int
+	Page_size       int
+	Quota_max       int
+	Quota_remaining int
+	Total           int
+	Type            string
 }

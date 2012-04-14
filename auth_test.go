@@ -1,8 +1,8 @@
 package stackongo
 
 import (
+	"net/url"
 	"testing"
-	"url"
 )
 
 func TestAuthURL(t *testing.T) {
@@ -42,10 +42,9 @@ func TestObtainAccessTokenInvalid(t *testing.T) {
 
 	_, error := ObtainAccessToken("abc", "secret", "def", "www.my_app.com")
 
-	if error.String() != "invalid_request: some reason" {
+	if error.Error() != "invalid_request: some reason" {
 		t.Error("invalid error message.")
 	}
-
 }
 
 //test data

@@ -11,7 +11,7 @@ func TestAllErrors(t *testing.T) {
 	errors, err := AllErrors(map[string]string{"page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if len(errors.Items) != 3 {
@@ -35,7 +35,7 @@ func TestSimulateError(t *testing.T) {
 	error, err := SimulateError(404)
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if error.Error_name != "no_method" {

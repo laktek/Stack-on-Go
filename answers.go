@@ -1,20 +1,19 @@
 package stackongo
 
 import (
-	"os"
-	"strings"
 	"fmt"
+	"strings"
 )
 
 // AllAnswers returns all answers in site 
-func (session Session) AllAnswers(params map[string]string) (output *Answers, error os.Error) {
+func (session Session) AllAnswers(params map[string]string) (output *Answers, error error) {
 	output = new(Answers)
 	error = session.get("answers", params, output)
 	return
 }
 
 // Answers returns the answers with the given ids
-func (session Session) GetAnswers(ids []int, params map[string]string) (output *Answers, error os.Error) {
+func (session Session) GetAnswers(ids []int, params map[string]string) (output *Answers, error error) {
 	string_ids := []string{}
 	for _, v := range ids {
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))
@@ -27,7 +26,7 @@ func (session Session) GetAnswers(ids []int, params map[string]string) (output *
 }
 
 // AnswersForQuestions returns the answers for the questions identified with given ids
-func (session Session) AnswersForQuestions(ids []int, params map[string]string) (output *Answers, error os.Error) {
+func (session Session) AnswersForQuestions(ids []int, params map[string]string) (output *Answers, error error) {
 	string_ids := []string{}
 	for _, v := range ids {
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))
@@ -40,7 +39,7 @@ func (session Session) AnswersForQuestions(ids []int, params map[string]string) 
 }
 
 // AnswersFromUsers returns the answers from the users identified with given ids
-func (session Session) AnswersFromUsers(ids []int, params map[string]string) (output *Answers, error os.Error) {
+func (session Session) AnswersFromUsers(ids []int, params map[string]string) (output *Answers, error error) {
 	string_ids := []string{}
 	for _, v := range ids {
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))
@@ -53,7 +52,7 @@ func (session Session) AnswersFromUsers(ids []int, params map[string]string) (ou
 }
 
 // TopAnswersFromUsers returns the top answers from the users identified with given ids for the questions with given tags
-func (session Session) TopAnswersFromUsers(ids []int, tags []string, params map[string]string) (output *Answers, error os.Error) {
+func (session Session) TopAnswersFromUsers(ids []int, tags []string, params map[string]string) (output *Answers, error error) {
 
 	string_ids := []string{}
 	for _, v := range ids {

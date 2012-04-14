@@ -12,7 +12,7 @@ func TestAllPosts(t *testing.T) {
 	posts, err := session.AllPosts(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if len(posts.Items) != 3 {
@@ -45,7 +45,7 @@ func TestGetPosts(t *testing.T) {
 	_, err := session.GetPosts([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }

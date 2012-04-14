@@ -14,9 +14,9 @@ func main() {
 		fmt.Printf(err.String())
 	}
 
-  for _, question := range questions.Items {
+	for _, question := range questions.Items {
 		fmt.Printf("%v\n", question.Title)
-		fmt.Printf("Asked By: %v on %v\n", question.Owner.Display_name, time.SecondsToUTC(question.Creation_date))
+		fmt.Printf("Asked By: %v on %v\n", question.Owner.Display_name, time.Unix(question.Creation_date, 0).UTC())
 		fmt.Printf("Link: %v\n\n", question.Link)
 	}
 }

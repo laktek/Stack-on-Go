@@ -8,7 +8,7 @@ func main() {
 
 	fmt.Printf("Questions asked by users registered in last 24 hours:\n")
 
-	from_date := time.LocalTime().Seconds() - (60 * 60 * 24)
+	from_date := time.Now().Unix() - (60 * 60 * 24)
 
 	session := stackongo.NewSession("stackoverflow")
 
@@ -39,7 +39,7 @@ func main() {
 
 	for _, question := range questions.Items {
 		fmt.Printf("%v\n", question.Title)
-		fmt.Printf("Asked By: %v on %v\n", question.Owner.Display_name, time.SecondsToUTC(question.Creation_date))
+		fmt.Printf("Asked By: %v on %v\n", question.Owner.Display_name, time.Unix(question.Creation_date, 0).UTC())
 		fmt.Printf("Link: %v\n\n", question.Link)
 
 	}

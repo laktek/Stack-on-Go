@@ -1,13 +1,12 @@
 package stackongo
 
 import (
-	"os"
-	"strings"
 	"fmt"
+	"strings"
 )
 
 // Revisions returns edit revisions identified by given ids
-func (session Session) Revisions(ids []int, params map[string]string) (output *Revisions, error os.Error) {
+func (session Session) Revisions(ids []int, params map[string]string) (output *Revisions, error error) {
 	string_ids := []string{}
 	for _, v := range ids {
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))
@@ -20,7 +19,7 @@ func (session Session) Revisions(ids []int, params map[string]string) (output *R
 }
 
 // RevisionsForPosts returns the revisions for the posts identified with given ids
-func (session Session) RevisionsForPosts(ids []int, params map[string]string) (output *Revisions, error os.Error) {
+func (session Session) RevisionsForPosts(ids []int, params map[string]string) (output *Revisions, error error) {
 	string_ids := []string{}
 	for _, v := range ids {
 		string_ids = append(string_ids, fmt.Sprintf("%v", v))

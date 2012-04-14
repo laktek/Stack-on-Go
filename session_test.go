@@ -1,11 +1,10 @@
 package stackongo
 
 import (
+	"net/http"
+	"net/http/httptest"
+	"net/url"
 	"testing"
-	"http"
-	"http/httptest"
-	"url"
-	"os"
 )
 
 func closeDummyServer(dummy_server *httptest.Server) {
@@ -17,7 +16,7 @@ func createDummyServer(handler func(w http.ResponseWriter, r *http.Request)) *ht
 	dummy_server := httptest.NewServer(http.HandlerFunc(handler))
 
 	//change the host to use the test server
-	SetTransport(&http.Transport{Proxy: func(*http.Request) (*url.URL, os.Error) { return url.Parse(dummy_server.URL) }})
+	SetTransport(&http.Transport{Proxy: func(*http.Request) (*url.URL, error) { return url.Parse(dummy_server.URL) }})
 
 	//turn off SSL
 	UseSSL = false
@@ -76,7 +75,7 @@ func TestMetaInfo(t *testing.T) {
 	results, err := session.AllQuestions(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if results.Has_more != true {

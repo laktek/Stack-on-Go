@@ -13,7 +13,7 @@ func TestAllSuggestedEdits(t *testing.T) {
 	suggested_edits, err := session.AllSuggestedEdits(map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if len(suggested_edits.Items) != 2 {
@@ -46,7 +46,7 @@ func TestGetSuggestedEdits(t *testing.T) {
 	_, err := session.GetSuggestedEdits([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }
@@ -59,7 +59,7 @@ func TestSuggestedEditsForPosts(t *testing.T) {
 	_, err := session.SuggestedEditsForPosts([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 }
 
@@ -71,7 +71,7 @@ func TestSuggestedEditsFromUsers(t *testing.T) {
 	_, err := session.SuggestedEditsFromUsers([]int{1, 2, 3}, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 }

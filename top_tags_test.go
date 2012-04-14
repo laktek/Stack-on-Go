@@ -12,7 +12,7 @@ func TestTopTagsByAnswerForUser(t *testing.T) {
 	tags, err := session.TopTagsByAnswerForUser(1, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if len(tags.Items) != 3 {
@@ -41,7 +41,7 @@ func TestTopTagsByQuestionForUser(t *testing.T) {
 	tags, err := session.TopTagsByQuestionForUser(1, map[string]string{"sort": "votes", "order": "desc", "page": "1"})
 
 	if err != nil {
-		t.Error(err.String())
+		t.Error(err.Error())
 	}
 
 	if len(tags.Items) != 3 {

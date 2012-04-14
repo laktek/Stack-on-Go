@@ -1,10 +1,10 @@
 package stackongo
 
 import (
-	"os"
-	"http"
-	"url"
+	"errors"
 	"io/ioutil"
+	"net/http"
+	"net/url"
 )
 
 type authError struct {
@@ -31,11 +31,10 @@ func AuthURL(client_id, redirect_uri string, options map[string]string) (output 
 	}
 
 	auth_url.RawQuery = auth_query.Encode()
-
 	return auth_url.String()
 }
 
-func ObtainAccessToken(client_id, client_secret, code, redirect_uri string) (output map[string]string, error os.Error) {
+func ObtainAccessToken(client_id, client_secret, code, redirect_uri string) (output map[string]string, error error) {
 	client := &http.Client{Transport: getTransport()}
 
 	parsed_auth_url, _ := url.Parse(auth_url)
@@ -57,17 +56,18 @@ func ObtainAccessToken(client_id, client_secret, code, redirect_uri string) (out
 		collection := new(authError)
 		error = parseResponse(response, collection)
 
-		error = os.NewError(collection.Error["type"] + ": " + collection.Error["message"])
+		error = errors.New(collection.Error["type"] + ": " + collection.Error["message"])
 	} else {
 		// if not process the output 
-		bytes, error := ioutil.ReadAll(response.Body)
+		bytes, err2 := ioutil.ReadAll(response.Body)
 
-		if error != nil {
-			return
+		if err2 != nil {
+			return output, err2
 		}
 
-		collection, error := url.ParseQuery(string(bytes))
+		collection, err3 := url.ParseQuery(string(bytes))
 		output = map[string]string{"access_token": collection.Get("access_token"), "expires": collection.Get("expires")}
+		error = err3
 	}
 
 	return

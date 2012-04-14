@@ -1,13 +1,12 @@
 package stackongo
 
 import (
-	"os"
-	"strings"
 	"fmt"
+	"strings"
 )
 
 // TopTagsByAnswerForUser returns a single user's top tags by answer score. 
-func (session Session) TopTagsByAnswerForUser(id int, params map[string]string) (output *TopTags, error os.Error) {
+func (session Session) TopTagsByAnswerForUser(id int, params map[string]string) (output *TopTags, error error) {
 	request_path := strings.Join([]string{"users", fmt.Sprintf("%v", id), "top-answer-tags"}, "/")
 
 	output = new(TopTags)
@@ -16,7 +15,7 @@ func (session Session) TopTagsByAnswerForUser(id int, params map[string]string) 
 }
 
 // TopTagsByQuestionForUser returns a single user's top tags by question score. 
-func (session Session) TopTagsByQuestionForUser(id int, params map[string]string) (output *TopTags, error os.Error) {
+func (session Session) TopTagsByQuestionForUser(id int, params map[string]string) (output *TopTags, error error) {
 	request_path := strings.Join([]string{"users", fmt.Sprintf("%v", id), "top-question-tags"}, "/")
 
 	output = new(TopTags)

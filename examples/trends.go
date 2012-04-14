@@ -9,7 +9,7 @@ func main() {
 
 	fmt.Printf("No.of Questions for Technology (Last 30 days):\n")
 
-	from_date := time.LocalTime().Seconds() - (60 * 60 * 24 * 30)
+	from_date := time.Now().Unix() - (60 * 60 * 24 * 30)
 
 	session := stackongo.NewSession("stackoverflow")
 
