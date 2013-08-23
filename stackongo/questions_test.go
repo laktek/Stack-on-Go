@@ -207,6 +207,19 @@ func TestSearch(t *testing.T) {
 
 }
 
+func TestAdvancedSearch(t *testing.T) {
+	dummy_server := returnDummyResponseForPathAndParams("/2.0/search/advanced", map[string]string{"q": "hello world"}, dummyQuestionsResponse, t)
+	defer closeDummyServer(dummy_server)
+
+	session := NewSession("stackoverflow")
+	_, err := session.AdvancedSearch(map[string]string{"q": "hello world"})
+
+	if err != nil {
+		t.Error(err.Error())
+	}
+
+}
+
 func TestSimilar(t *testing.T) {
 	dummy_server := returnDummyResponseForPathAndParams("/2.0/similar", map[string]string{"title": "hello world", "tagged": "basic"}, dummyQuestionsResponse, t)
 	defer closeDummyServer(dummy_server)
