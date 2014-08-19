@@ -3,6 +3,7 @@ package stackongo
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -76,7 +77,7 @@ func parseResponse(response *http.Response, result interface{}) (error error) {
 
 	//check whether the response is a bad request
 	if response.StatusCode == 400 {
-		error = errors.New("Bad Request")
+		error = errors.New(fmt.Sprintf("Bad Request: %s", string(bytes)))
 	}
 
 	return
