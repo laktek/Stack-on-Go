@@ -165,6 +165,13 @@ func (session Session) Search(query string, params map[string]string) (output *Q
 	return
 }
 
+// AdvancedSearch returns questions matching the params
+func (session Session) AdvancedSearch(params map[string]string) (output *Questions, error error) {
+	output = new(Questions)
+	error = session.get("search/advanced", params, output)
+	return
+}
+
 // Similar returns questions similar to the given query
 func (session Session) Similar(query string, params map[string]string) (output *Questions, error error) {
 	request_path := "similar"
