@@ -13,7 +13,7 @@ type authError struct {
 
 var auth_url string = "https://stackexchange.com/oauth/access_token"
 
-// AuthURL returns the URL to redirect the user for authentication 
+// AuthURL returns the URL to redirect the user for authentication
 // It accepts the following arguments
 // client_id - Your App's registered ID
 // redirect_uri - URI to redirect after authentication
@@ -58,7 +58,7 @@ func ObtainAccessToken(client_id, client_secret, code, redirect_uri string) (out
 
 		error = errors.New(collection.Error["type"] + ": " + collection.Error["message"])
 	} else {
-		// if not process the output 
+		// if not process the output
 		bytes, err2 := ioutil.ReadAll(response.Body)
 
 		if err2 != nil {

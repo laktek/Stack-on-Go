@@ -57,30 +57,26 @@ func setupEndpoint(path string, params map[string]string) *url.URL {
 }
 
 // parse the response
-func parseResponse(response *http.Response, result interface{}) (error error) {
+func parseResponse(response *http.Response, result interface{}) error {
 	// close the body when done reading
 	defer response.Body.Close()
 
 	//read the response
-	bytes, error := ioutil.ReadAll(response.Body)
-
-	if error != nil {
-		return
+	bytes, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		return err
 	}
 
-	//parse JSON
-	error = json.Unmarshal(bytes, result)
-
-	if error != nil {
-		print(error.Error())
+	err = json.Unmarshal(bytes, result)
+	if err != nil {
+		return err
 	}
 
-	//check whether the response is a bad request
-	if response.StatusCode == 400 {
-		error = errors.New(fmt.Sprintf("Bad Request: %s", string(bytes)))
+	if response.StatusCode == http.StatusBadRequest {
+		return errors.New(fmt.Sprintf("Bad Request: %s", string(bytes)))
 	}
 
-	return
+	return nil
 }
 
 func (session Session) get(section string, params map[string]string, collection interface{}) (error error) {
@@ -90,17 +86,13 @@ func (session Session) get(section string, params map[string]string, collection 
 	return get(section, params, collection)
 }
 
-func get(section string, params map[string]string, collection interface{}) (error error) {
+func get(section string, params map[string]string, collection interface{}) error {
 	client := &http.Client{Transport: getTransport()}
 
-	response, error := client.Get(setupEndpoint(section, params).String())
-
-	if error != nil {
-		return
+	response, err := client.Get(setupEndpoint(section, params).String())
+	if err != nil {
+		return err
 	}
 
-	error = parseResponse(response, collection)
-
-	return
-
+	return parseResponse(response, collection)
 }
